@@ -115,25 +115,23 @@ git commit --amend
 # git 常见问题
 
 1. 使用http/https协议每次pull或者push需要输入密码
-```plain
-git config --global credential.helper store
-会在本地生成.gitconfig
-执行命令：
-cat ~/.gitconfig，
-存在如下内容即代表成功
-[credential]
-helper = store
-再输入一次后，无需再输入
-```
+	```plain
+	git config --global credential.helper store
+	会在本地生成.gitconfig
+	执行命令：
+	cat ~/.gitconfig，
+	存在如下内容即代表成功
+	[credential]
+	helper = store
+	再输入一次后，无需再输入
+	```
 2. 公司为了安全，3个月强制改密码，此时执行也会出问题
-```plain
-remote: HTTP Basic: Access denied
-fatal: Authentication failed for 'http://git.aaa.com/aaa/aaa.git/'
-解决方法：密码重置
-git config --system --unset credential.helper
-```
+	```plain
+	remote: HTTP Basic: Access denied
+	fatal: Authentication failed for 'http://git.aaa.com/aaa/aaa.git/'
+	解决方法：密码重置
+	git config --system --unset credential.helper
+	```
 3. goland终端配置git bash
 [参考](https://blog.csdn.net/liu865033503/article/details/103630499?ops_request_misc=&request_id=&biz_id=102&utm_term=win%20%20git%20%E6%B2%A1%E6%9C%89ll%20&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-103630499.142^v72^insert_down3,201^v4^add_ask&spm=1018.2226.3001.4187)
-
-4. 
-
+4.
