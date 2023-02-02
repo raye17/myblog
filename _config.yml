@@ -23,7 +23,7 @@ social:
 
 # # Your site's logo. Will be shown on the left top of your page.
 # logo: /img/logo.svg
-logo: ./image/cat.png
+logo: /image/cat.svg
 # # If the images of our blog are stored in an external cloud. You can use the jekyll-img-prefix plugin and set your images' base URL here.
 # img_prefix: https://your-img-cdn.com
 # # The RSS link of your blog.
@@ -34,7 +34,7 @@ theme_setting:
 #   # The slides count in the slides layout. Default is 4.
 #   slides_count: 5
 #   # The ← back URL on the top of your post page. Default is your site's home page.
-#   blog_page: "blog/index.md"
+  blog_page: "blog/index.md"
 #   # The URL on your name on the bottom of your post and page. Default is your site's home page.
   about_page: "about.md"
 #   #  The URL of the menu icon(which has three black lines). Will be shown on the slides/book/chapter layouts It won't be shown if blank.
