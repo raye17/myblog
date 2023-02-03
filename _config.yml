@@ -1,8 +1,8 @@
 # title: Your Site Title
 title: raye's blog
 description: go study blog
-author: "刚毕业的大学生一枚"  #  Default is your site title.
-# email: your-email@address.com
+author: "raye"  #  Default is your site title.
+email: 1017@address.com
 
 social:
   github: raye17
@@ -32,18 +32,19 @@ theme_setting:
 #   # The ← back URL on the top of your post page. Default is your site's home page.
   # blog_page: "blog/index.html"
 #   # The URL on your name on the bottom of your post and page. Default is your site's home page.
-  # about_page: "blog/about.md"
+   about_page: "about.md"
 #   #  The URL of the menu icon(which has three black lines). Will be shown on the slides/book/chapter layouts It won't be shown if blank.
   # archive_page: "blog/archive.md"
 #   # The nav links on the top right of home/page/post/blog layout. You can set a local page(by setting a layout's path) or and external link ( both title and url are required) here.
-  nav_pages:
+   nav_pages:
    - "blog/about.md"
    -
         title: "/分类"
    -
         "归档"
    - title: "归档"
-   - title: "External Link Title"
+   -
+     title: "External Link Title"
       # url: "github.com/raye17"
 #   # Every default value in the following settings is false. You can set them globally here or separately in a single post/page/chapter.
 #   code: true # Code highlight.
