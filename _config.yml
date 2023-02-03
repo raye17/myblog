@@ -20,7 +20,7 @@ logo: /img/logo.svg
 
 # # The followings are settings for displays of your blog.
 theme_setting:
-  blog_page: "blog/index.md"
+  # blog_page: "blog/index.md"
 #   # The slides count in the slides layout. Default is 4.
 #   slides_count: 5
 #   # The ← back URL on the top of your post page. Default is your site's home page.
