@@ -38,8 +38,10 @@ theme_setting:
 #   # The nav links on the top right of home/page/post/blog layout. You can set a local page(by setting a layout's path) or and external link ( both title and url are required) here.
   nav_pages:
    - "blog/about.md"
-   - title: "/分类"
-   - "归档"
+   -
+        title: "/分类"
+   -
+        "归档"
    - title: "归档"
    - title: "External Link Title"
       # url: "github.com/raye17"
