@@ -1,6 +1,6 @@
 # title: Your Site Title
 title: raye's blog
-description: github.com/raye17
+description: go blog
 author: raye
 # description: The description of your site.
 # email: your-email@address.com
@@ -44,7 +44,7 @@ theme_setting:
      - "about.md"
      -
        title: "External Link Title"
-       url: "github.com/raye17"
+       url: "github.com/raye1711"
 #   # Every default value in the following settings is false. You can set them globally here or separately in a single post/page/chapter.
 #   code: true # Code highlight.
 #   math: true # Mathjax
