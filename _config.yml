@@ -12,7 +12,7 @@ social:
 # # Your site's logo. Will be shown on the left top of your page.
 # logo: /img/logo.svg
 logo: /img/logo.svg
-theme: 'jekyll-theme-persephone'
+# theme: 'jekyll-theme-persephone'
 # # If the images of our blog are stored in an external cloud. You can use the jekyll-img-prefix plugin and set your images' base URL here.
 # img_prefix: https://your-img-cdn.com
 # # The RSS link of your blog.
@@ -72,19 +72,19 @@ theme_setting:
 # smiley:
 #   enabled: true
 #   dir: img/smileys
-#defaults:
-#  -
-#    scope:
-#      path: ""
-#      type: "pages"
-#    values:
-#      layout: "page"
-#      keywords: raye, 原创独立博客,  Jekyll, minimal lifestyle blog
-#      description: raye，目前还是程序员。这里是独立博客，分享编程、建站、生活感悟、说等。
-#  -
-#    scope:
-#      path: ""
-#      type: "posts"
-#    values:
-#      layout: "post"
-#      toc: true
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+      keywords: raye, 原创独立博客,  Jekyll, minimal lifestyle blog
+      description: raye，目前还是程序员。这里是独立博客，分享编程、建站、生活感悟、说等。
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      toc: true
