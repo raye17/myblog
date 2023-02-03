@@ -1,6 +1,6 @@
 # title: Your Site Title
 title: raye's blog
-description: go blog
+description: go study blog
 author: "刚毕业的大学生一枚"  #  Default is your site title.
 # email: your-email@address.com
 
@@ -30,7 +30,7 @@ theme_setting:
 #   # The slides count in the slides layout. Default is 4.
 #   slides_count: 5
 #   # The ← back URL on the top of your post page. Default is your site's home page.
-  blog_page: "blog/index.md"
+  blog_page: "blog/index.html"
 #   # The URL on your name on the bottom of your post and page. Default is your site's home page.
   about_page: "blog/about.md"
 #   #  The URL of the menu icon(which has three black lines). Will be shown on the slides/book/chapter layouts It won't be shown if blank.
@@ -40,7 +40,7 @@ theme_setting:
      - "blog/about.md"
      -
        title: "External Link Title"
-       url: "github.com/raye1711"
+       url: "github.com/raye17"
 #   # Every default value in the following settings is false. You can set them globally here or separately in a single post/page/chapter.
 #   code: true # Code highlight.
 #   math: true # Mathjax
