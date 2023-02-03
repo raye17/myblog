@@ -72,19 +72,19 @@ theme_setting:
 # smiley:
 #   enabled: true
 #   dir: img/smileys
-defaults:
-  -
-    scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "page"
-      keywords: raye, 原创独立博客,  Jekyll, minimal lifestyle blog
-      description: raye，目前还是程序员。这里是独立博客，分享编程、建站、生活感悟、说等。
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      toc: true
+#defaults:
+#  -
+#    scope:
+#      path: ""
+#      type: "pages"
+#    values:
+#      layout: "page"
+#      keywords: raye, 原创独立博客,  Jekyll, minimal lifestyle blog
+#      description: raye，目前还是程序员。这里是独立博客，分享编程、建站、生活感悟、说等。
+#  -
+#    scope:
+#      path: ""
+#      type: "posts"
+#    values:
+#      layout: "post"
+#      toc: true
