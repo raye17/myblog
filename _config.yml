@@ -1,12 +1,8 @@
 # title: Your Site Title
 title: raye's blog
 description: go blog
-author: raye
-# description: The description of your site.
+author: "刚毕业的大学生一枚"  #  Default is your site title.
 # email: your-email@address.com
-
-# author: Your name #  Default is your site title.
-
 
 social:
   github: raye17
@@ -36,12 +32,12 @@ theme_setting:
 #   # The ← back URL on the top of your post page. Default is your site's home page.
   blog_page: "blog/index.md"
 #   # The URL on your name on the bottom of your post and page. Default is your site's home page.
-  about_page: "about.md"
+  about_page: "blog/about.md"
 #   #  The URL of the menu icon(which has three black lines). Will be shown on the slides/book/chapter layouts It won't be shown if blank.
-  archive_page: "archive.md"
+  archive_page: "blog/archive.md"
 #   # The nav links on the top right of home/page/post/blog layout. You can set a local page(by setting a layout's path) or and external link ( both title and url are required) here.
   nav_pages:
-     - "about.md"
+     - "blog/about.md"
      -
        title: "External Link Title"
        url: "github.com/raye1711"
