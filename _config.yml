@@ -36,8 +36,10 @@ theme_setting:
 #   #  The URL of the menu icon(which has three black lines). Will be shown on the slides/book/chapter layouts It won't be shown if blank.
   # archive_page: "blog/archive.md"
 #   # The nav links on the top right of home/page/post/blog layout. You can set a local page(by setting a layout's path) or and external link ( both title and url are required) here.
-  #nav_pages:
-    # - "blog/about.md"
+  nav_pages:
+   - "blog/about.md"
+   - "blog/分类"
+   - "归档"
     # -
      #  title: "External Link Title"
       # url: "github.com/raye17"
