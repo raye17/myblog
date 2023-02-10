@@ -72,6 +72,8 @@ theme_setting:
 # smiley:
 #   enabled: true
 #   dir: img/smileys
+
+
 #defaults:
 #  -
 #    scope:
