@@ -32,8 +32,8 @@ theme_setting:
 #   # The nav links on the top right of home/page/post/blog layout. You can set a local page(by setting a layout's path) or and external link ( both title and url are required) here.
   nav_pages:
   - "about.md"
-  - "blog/index.html"
   - "blog/sxy.md"
+  - “docs/index.html"
   lang:
     category_all: "全部"
     blog_title: "blog"
