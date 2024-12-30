@@ -28,11 +28,11 @@ theme_setting:
 #   # The URL on your name on the bottom of your post and page. Default is your site's home page.
   about_page: "about.md"
 #   #  The URL of the menu icon(which has three black lines). Will be shown on the slides/book/chapter layouts It won't be shown if blank.
-  archive_page: "blog/archive.md"
+  archive_page: "blog/index.html"
 #   # The nav links on the top right of home/page/post/blog layout. You can set a local page(by setting a layout's path) or and external link ( both title and url are required) here.
   nav_pages:
   - "about.md"
-  - "blog/archive.md"
+  - "blog/index.html"
   lang:
     category_all: "全部"
     blog_title: "blog"
