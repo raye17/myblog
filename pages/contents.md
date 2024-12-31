@@ -10,8 +10,8 @@
 		- [[protobuf]]
 		- [[git]]
 		- [[终端命令]]
+	- ## 其他
+		- [[README]]
+		- [[github]]
 -
 -
-- ## 其他
-- [[README]]
-- [[github]]
