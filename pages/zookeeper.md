@@ -1,9 +1,9 @@
 # zookeeper启动命令 #card
 card-last-interval:: 4
-card-repeats:: 1
-card-ease-factor:: 2.6
-card-next-schedule:: 2024-12-31T01:40:31.185Z
-card-last-reviewed:: 2024-12-27T01:40:31.186Z
+card-repeats:: 2
+card-ease-factor:: 2.7
+card-next-schedule:: 2025-01-04T02:28:12.879Z
+card-last-reviewed:: 2024-12-31T02:28:12.880Z
 card-last-score:: 5
 collapsed:: true
 	- ## win
