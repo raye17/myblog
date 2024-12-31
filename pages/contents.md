@@ -1,4 +1,4 @@
-# logseq相关
+## logseq相关
 - [[logseq使用总结]]
 - [[Favorites]]
 -
@@ -12,6 +12,6 @@
 - [[git]]
 - [[终端命令]]
 -
-- # 其他
+- ## 其他
 - [[README]]
 - [[github]]
