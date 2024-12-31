@@ -9,3 +9,5 @@
 - ## 与github.io结合，实现博客展示
 	- 在github建立github_username.github.io仓库
 	  logseq.order-list-type:: number
+	- clone仓库到本地图谱根目录下
+	  logseq.order-list-type:: number
