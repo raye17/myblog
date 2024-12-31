@@ -14,4 +14,6 @@ id:: 67734d96-5ba7-40c9-b18b-995ff03beef3
 	  logseq.order-list-type:: number
 	- 导出logseq为公开页，参考 ((67734d96-5ba7-40c9-b18b-995ff03beef3))
 	  logseq.order-list-type:: number
+	- push上传，在github_username.github.io页面打开
+	  logseq.order-list-type:: number
 	- logseq.order-list-type:: number
