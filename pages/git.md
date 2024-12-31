@@ -1,4 +1,4 @@
-## git add
+### git add
 	- git add 添加多个文件，文件中间用空格隔开
 	  logseq.order-list-type:: number
 		- `git add file1 file2`
@@ -21,5 +21,6 @@
 		  ```
 	- git add文件夹名
 	  logseq.order-list-type:: number
+- 新建分支
 	-
 -
