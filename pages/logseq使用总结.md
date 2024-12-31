@@ -11,3 +11,5 @@
 	  logseq.order-list-type:: number
 	- clone仓库到本地图谱根目录下
 	  logseq.order-list-type:: number
+	- logseq.order-list-type:: number
+	- logseq.order-list-type:: number
