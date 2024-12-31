@@ -3,8 +3,6 @@
 -
 -
 -
--
--
 - # zookeeper启动命令 #win
   card-last-score:: 5
   card-repeats:: 2
