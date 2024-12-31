@@ -1,7 +1,7 @@
-## logseq相关
-- [[logseq使用总结]]
-- [[Favorites]]
--
+# 目录
+	- ## logseq相关
+		- [[logseq使用总结]]
+		- [[Favorites]]
 -
 - ## 后端
 - [[go]]学习
