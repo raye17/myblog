@@ -22,5 +22,8 @@
 	- git add文件夹名
 	  logseq.order-list-type:: number
 - 新建分支
-	-
+	- checkout
+		- git checkout dev
+		- git pull
+		- git checkout -b te
 -
