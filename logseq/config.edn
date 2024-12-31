@@ -128,7 +128,7 @@
  ;; If `:sidebar` remains unset, the right sidebar will stay hidden.
  ;; Examples:
  ;; 1. Set "Changelog" as the home page and display "Contents" in the right sidebar:
-  :default-home {:page "Changelog", :sidebar "Contents"}
+ ;; :default-home {:page "Changelog", :sidebar "Contents"}
  ;; 2. Set "Jun 3rd, 2021" as the home page without the right sidebar:
  ;; :default-home {:page "Jun 3rd, 2021"}
  ;; 3. Set "home" as the home page and display multiple pages in the right sidebar:
@@ -423,5 +423,5 @@
  :graph/settings {:journal? true
  :builtin-pages? true}
  :journal/page-title-format "yyyy-MM-dd"
- :publishing/all-pages-public? false
+ :publishing/all-pages-public? f
  :ui/show-brackets? false}
