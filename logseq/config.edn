@@ -186,7 +186,7 @@
 
  ;; Display command documentation on hover.
  ;; Default value: true
- :ui/show-command-doc? false
+ :ui/show-command-doc? true
 
  ;; Display empty bullet points.
  ;; Default value: false
@@ -423,5 +423,5 @@
  :graph/settings {:journal? true
  :builtin-pages? true}
  :journal/page-title-format "yyyy-MM-dd"
- :publishing/all-pages-public? true
+ :publishing/all-pages-public? false
  :ui/show-brackets? false}
