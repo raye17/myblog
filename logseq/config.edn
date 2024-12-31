@@ -299,7 +299,7 @@
  ;;  :charge-range    600}   ; Default value: 600
 
  ;; Favorites to list on the left sidebar
- :favorites ["Contents" "README"]
+ :favorites ["README"]
 
  ;; Set flashcards interval.
  ;; Expected value:
@@ -423,5 +423,5 @@
  :graph/settings {:journal? true
  :builtin-pages? true}
  :journal/page-title-format "yyyy-MM-dd"
- :publishing/all-pages-public? true
+ :publishing/all-pages-public? false
  :ui/show-brackets? false}
