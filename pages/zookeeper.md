@@ -5,6 +5,7 @@ card-ease-factor:: 2.6
 card-next-schedule:: 2024-12-31T01:40:31.185Z
 card-last-reviewed:: 2024-12-27T01:40:31.186Z
 card-last-score:: 5
+collapsed:: true
 	- ## win
 		- ```
 		  # 进入 Zookeeper bin 目录
