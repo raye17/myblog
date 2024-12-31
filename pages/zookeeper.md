@@ -1,10 +1,10 @@
-# zookeeper启动命令 #card
-card-last-interval:: 4
-card-repeats:: 2
-card-ease-factor:: 2.7
-card-next-schedule:: 2025-01-04T02:28:12.879Z
-card-last-reviewed:: 2024-12-31T02:28:12.880Z
+# zookeeper启动命令
 card-last-score:: 5
+card-repeats:: 2
+card-next-schedule:: 2025-01-04T02:28:12.879Z
+card-last-interval:: 4
+card-ease-factor:: 2.7
+card-last-reviewed:: 2024-12-31T02:28:12.880Z
 collapsed:: true
 	- ## win
 		- ```
