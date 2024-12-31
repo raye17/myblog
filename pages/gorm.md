@@ -1,4 +1,4 @@
-- time.Time类型不能为空，可以设置默认值#go
+- time.Time类型不能为空，可以设置默认值
   logseq.order-list-type:: number
 - gorm不支持切片等类型字段：
   logseq.order-list-type:: number
