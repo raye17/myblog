@@ -186,7 +186,7 @@
 
  ;; Display command documentation on hover.
  ;; Default value: true
- :ui/show-command-doc? true
+ :ui/show-command-doc? false
 
  ;; Display empty bullet points.
  ;; Default value: false
