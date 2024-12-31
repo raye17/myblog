@@ -1,5 +1,7 @@
 :root{
 /* 编辑器宽度 */
     --ls-main-content-max-width:100%
-      
+    .left-sidebar-inner .favorites .page-icon, .left-sidebar-inner .recent .page-icon {
+        display: none;
+    }
     }
