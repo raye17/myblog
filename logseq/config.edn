@@ -421,7 +421,8 @@
  :file/name-format :triple-lowbar
  :editor/logical-outdenting? true
  :graph/settings {:journal? true
- :builtin-pages? false}
+ :builtin-pages? true
+ :excluded-pages? true}
  :journal/page-title-format "yyyy-MM-dd"
  :publishing/all-pages-public? true
  :ui/show-brackets? false
