@@ -1,7 +1,7 @@
 - dubbo学习总结
 	- 服务端和客户端，dubbogo.yaml文件保持一致，interface接口要和代码中一致，不然找不到
 	- [[dubbogo 源码分析]]
-	- LATER 为什么公司的dubbogo.yaml interface怎么实现的
+	- DONE 为什么公司的dubbogo.yaml interface怎么实现的
 	  :LOGBOOK:
 	  CLOCK: [2024-12-26 Thu 14:41:35]--[2024-12-26 Thu 14:41:35] =>  00:00:00
 	  CLOCK: [2024-12-26 Thu 14:41:36]--[2024-12-26 Thu 14:41:36] =>  00:00:00
