@@ -13,11 +13,11 @@
 				- ```sh
 				   go get -u github.com/golang/protobuf/protoc-gen-go
 				   ```
-				  
-				  `protoc-gen-go-grpc`：
-				   ```sh
-				   go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
-				   ```
+			- `protoc-gen-go-grpc`：
+			  logseq.order-list-type:: number
+			   ```sh
+			   go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
+			   ```
 		- **更新protobuf Go库**：更新您的项目中使用的protobuf Go库。如果您使用的是`github.com/golang/protobuf`，可以使用以下命令更新：
 		  logseq.order-list-type:: number
 		   ```sh
