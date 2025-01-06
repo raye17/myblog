@@ -37,10 +37,9 @@
 			  	......
 			  }
 			  ```
-			- 在读取yaml映射到Conf结构体时，Person中的StartYear和EndYear都是空值，检查发现tag中的字段也是对得上的，映射不到
-			- 翻了翻viper解析的部分源码，发现有些特殊情况，需要自定义kv的分隔符，有些时候，需要添加一些特殊标记来告诉解析器，这是一个合法的标识符。
-			- 将Mysql的结构体添加mapstructure，指定对应的字段就行了：
-			- type Mysql struct {
-			  RdsHost string `yaml:"rds_host" mapstructure:"rds_host"`
-			  RdsPort int    `yaml:"rds_port" mapstructure:"rds_port"`
+			- 在读取yaml映射到Conf结构体时，Person中的StartYear和EndYear都是空值，检查发现tag中的字段也对得上的，但却映射不到
+			- 检查viper解析的部分源码，发现有些特殊情况，需要自定义kv的分隔符，有些时候，需要添加一些特殊标记来告诉解析器，这是一个合法的标识符。
+			- 将Person的结构体添加mapstructure，指定对应的字段就行了：
+			- ```
+			  ```
 		-
