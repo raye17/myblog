@@ -22,7 +22,9 @@
 			        position: Software Engineer
 			        start_year: 2013 
 			        end_year: 2019 
-			  config.go部分内容如下：
+			  ```
+			- model文件如下：
+			- ```
 			  	type Person struct {
 			  	Name    string `yaml:"name"`
 			  	......
@@ -34,77 +36,10 @@
 			  	} `yaml:"experience"`
 			  	......
 			  }
-			  
 			  ```
-			- model文件如下：
-			- ```
-			  ```
-		- type Mysql struct {
-		  RdsHost string `yaml:"rds_host" mapstructure:"rds_host"`
-		  RdsPort int    `yaml:"rds_port" mapstructure:"rds_port"`
-		  }
-		- type Config struct {
-		  Mysql  Mysql  `yaml:"mysql"`
-		  }
-		- var Conf *Config
-		- func InitConf(confPath string) {
-		  var err error
-		    
-		  v := viper.New()
-		  v.SetConfigName("config")
-		  v.SetConfigType("yaml")
-		  v.AddConfigPath("xxxxxx")
-		- err = v.ReadInConfig()
-		  if err != nil {
-		  logrus.Errorf("[viper] ReadInConfig err:%s", err.Error())
-		  return
-		  }
-		- err = v.Unmarshal(&Conf)
-		  if err != nil {
-		  logrus.Errorf("[viper] Unmarshal err:%s", err.Error())
-		  panic(err)
-		  }
-		    
-		    // 省略...
-		  return
-		  }
-		  1
-		  2
-		  3
-		  4
-		  5
-		  6
-		  7
-		  8
-		  9
-		  10
-		  11
-		  12
-		  13
-		  14
-		  15
-		  16
-		  17
-		  18
-		  19
-		  20
-		  21
-		  22
-		  23
-		  24
-		  25
-		  26
-		  27
-		  28
-		  29
-		  30
-		  31
-		  32
-		  33
-		  34
-		  在读取yaml映射到Conf结构体时，发现Mysql中的RdsHost和RdsPort都是空值，仔细检查，发现tag中的
-		- 字段也是对得上的，为何不映射不到？
-		- 翻了翻viper解析的部分源码，发现有些特殊情况，需要自定义kv的分隔符，有些时候，需要添加一些特殊标记来告诉解析器，这是一个合法的标识符。
+			- 在读取yaml映射到Conf结构体时，发现Mysql中的RdsHost和RdsPort都是空值，仔细检查，发现tag中的
+			- 字段也是对得上的，为何不映射不到？
+			- 翻了翻viper解析的部分源码，发现有些特殊情况，需要自定义kv的分隔符，有些时候，需要添加一些特殊标记来告诉解析器，这是一个合法的标识符。
 		- 将Mysql的结构体添加mapstructure，指定对应的字段就行了：
 		- type Mysql struct {
 		  RdsHost string `yaml:"rds_host" mapstructure:"rds_host"`
