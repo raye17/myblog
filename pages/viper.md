@@ -15,6 +15,12 @@
 	- ## 解决viper读取yaml配置存在下划线时无法映射
 		- ### 场景：
 			- 使用viper读取yaml文件时候，遇到yaml文件中存在下划线，映射到结构体之后，结构体无法取到yaml文件中对应的值。
+			- ```
+			  conf.yaml文件如下：
+			  
+			  
+			  config.go部分内容如下：
+			  ```
 		- conf.yaml文件如下：
 		- mysql:
 		  rds_host: "rds_xxxxxx.com"
