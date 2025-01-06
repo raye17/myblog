@@ -37,14 +37,10 @@
 			  	......
 			  }
 			  ```
-			- 在读取yaml映射到Conf结构体时，发现Mysql中的RdsHost和RdsPort都是空值，仔细检查，发现tag中的
-			- 字段也是对得上的，为何不映射不到？
+			- 在读取yaml映射到Conf结构体时，Person中的StartYear和EndYear都是空值，检查发现tag中的字段也是对得上的，映射不到
 			- 翻了翻viper解析的部分源码，发现有些特殊情况，需要自定义kv的分隔符，有些时候，需要添加一些特殊标记来告诉解析器，这是一个合法的标识符。
-		- 将Mysql的结构体添加mapstructure，指定对应的字段就行了：
-		- type Mysql struct {
-		  RdsHost string `yaml:"rds_host" mapstructure:"rds_host"`
-		  RdsPort int    `yaml:"rds_port" mapstructure:"rds_port"`
-		  ————————————————
-		- 版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
-		                        
-		  原文链接：https://blog.csdn.net/weixin_42677653/article/details/123974540
+			- 将Mysql的结构体添加mapstructure，指定对应的字段就行了：
+			- type Mysql struct {
+			  RdsHost string `yaml:"rds_host" mapstructure:"rds_host"`
+			  RdsPort int    `yaml:"rds_port" mapstructure:"rds_port"`
+		-
