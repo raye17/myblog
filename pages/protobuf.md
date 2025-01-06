@@ -30,13 +30,16 @@
 		   ```
 		- **更新代码中的导入路径**：
 		  logseq.order-list-type:: number
-			- 根据需要更新Go代码中的导入路径，以反映现在使用的库的版本。例如，如果从`github.com/golang/protobuf`迁移到`google.golang.org/protobuf`，需要将所有的导入路径从`github.com/golang/protobuf/proto`更改为`google.golang.org/protobuf/proto`。
-		- logseq.order-list-type:: number
-		  5. **重新生成代码**：运行protobuf编译器以重新生成您的Go代码。这通常涉及到运行类似以下命令：
-		   ```
-		   protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative path/to/your.proto
-		   ```
-		- logseq.order-list-type:: number
-		  6. **测试**：确保运行项目的测试套件，验证更新后的protobuf包是否与您的项目兼容。
-		- 请注意，更新protobuf包可能会引入不兼容的更改，因此在进行更新之前，请确保您了解这些更改，并在更新后彻底测试您的项目。
+			- 根据需要更新Go代码中的导入路径，以反映现在使用的库的版本。
+			- 例如，如果从`github.com/golang/protobuf`迁移到`google.golang.org/protobuf`，需要将所有的导入路径从`github.com/golang/protobuf/proto`更改为`google.golang.org/protobuf/proto`。
+		- **重新生成代码**：
+		  logseq.order-list-type:: number
+			- 运行protobuf编译器以重新生成Go代码。运行类似以下命令：
+			  logseq.order-list-type:: number
+			   ```
+			   protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative path/to/your.proto
+			   ```
+		- **测试**：确保运行项目的测试套件，验证更新后的protobuf包是否与项目兼容。
+		  logseq.order-list-type:: number
+		- **注意**，更新protobuf包可能会引入不兼容的更改，因此在进行更新之前，请确保您了解这些更改，并在更新后彻底测试您的项目。
 		  logseq.order-list-type:: number
