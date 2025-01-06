@@ -11,12 +11,12 @@
 		  logseq.order-list-type:: number
 			- `protoc-gen-go`：
 			  logseq.order-list-type:: number
-				- ```sh
+				- ```
 				   go get -u github.com/golang/protobuf/protoc-gen-go
 				   ```
 			- `protoc-gen-go-grpc`：
 			  logseq.order-list-type:: number
-				- ```sh
+				- ```
 				   go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
 				   ```
 		- **更新protobuf Go库** 如果使用的是`github.com/golang/protobuf`，使用以下命令更新：
@@ -24,15 +24,16 @@
 		   ```
 		   go get -u github.com/golang/protobuf
 		   ```
-		   如果您需要更新到新的protobuf库`google.golang.org/protobuf`，可以使用以下命令：
-		   ```sh
+		   如果需要更新到新的protobuf库`google.golang.org/protobuf`，使用以下命令：
+		   ```
 		   go get google.golang.org/protobuf
 		   ```
-		- logseq.order-list-type:: number
-		  4. **更新代码中的导入路径**：根据需要更新您的Go代码中的导入路径，以反映您现在使用的库的版本。例如，如果您从`github.com/golang/protobuf`迁移到`google.golang.org/protobuf`，您需要将所有的导入路径从`github.com/golang/protobuf/proto`更改为`google.golang.org/protobuf/proto`。
+		- **更新代码中的导入路径**：
+		  logseq.order-list-type:: number
+			- 根据需要更新Go代码中的导入路径，以反映现在使用的库的版本。例如，如果从`github.com/golang/protobuf`迁移到`google.golang.org/protobuf`，需要将所有的导入路径从`github.com/golang/protobuf/proto`更改为`google.golang.org/protobuf/proto`。
 		- logseq.order-list-type:: number
 		  5. **重新生成代码**：运行protobuf编译器以重新生成您的Go代码。这通常涉及到运行类似以下命令：
-		   ```sh
+		   ```
 		   protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative path/to/your.proto
 		   ```
 		- logseq.order-list-type:: number
