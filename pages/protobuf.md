@@ -19,9 +19,9 @@
 				- ```sh
 				   go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
 				   ```
-		- **更新protobuf Go库**：更新您的项目中使用的protobuf Go库。如果您使用的是`github.com/golang/protobuf`，可以使用以下命令更新：
+		- **更新protobuf Go库** 如果使用的是`github.com/golang/protobuf`，使用以下命令更新：
 		  logseq.order-list-type:: number
-		   ```sh
+		   ```
 		   go get -u github.com/golang/protobuf
 		   ```
 		   如果您需要更新到新的protobuf库`google.golang.org/protobuf`，可以使用以下命令：
