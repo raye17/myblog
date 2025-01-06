@@ -3,17 +3,18 @@
 	- TODO logseq不支持表格，插入链接 [protobuf语法](https://protobuf.com.cn/programming-guides/proto3/)
 - ## 更新protobuf包
 	- 更新protobuf包涉及以下几个步骤：
+	  collapsed:: true
 		- **更新protobuf编译器**：确保使用的是最新版本的protobuf编译器。可以从[protobuf的GitHub页面](https://github.com/protocolbuffers/protobuf/releases)下载最新版本。
 		  logseq.order-list-type:: number
 		- **更新protobuf Go插件**：如果使用的是`protoc-gen-go`插件，可以通过以下命令更新到最新版本：
 		  logseq.order-list-type:: number
-		   ```sh
-		   go get -u github.com/golang/protobuf/protoc-gen-go
-		   ```
-		   对于`protoc-gen-go-grpc`插件，使用以下命令更新：
-		   ```sh
-		   go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
-		   ```
+			- ```sh
+			   go get -u github.com/golang/protobuf/protoc-gen-go
+			   ```
+			   对于`protoc-gen-go-grpc`插件，使用以下命令更新：
+			   ```sh
+			   go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
+			   ```
 		- **更新protobuf Go库**：更新您的项目中使用的protobuf Go库。如果您使用的是`github.com/golang/protobuf`，可以使用以下命令更新：
 		  logseq.order-list-type:: number
 		   ```sh
