@@ -17,18 +17,13 @@
 			- 使用viper读取yaml文件时候，遇到yaml文件中存在下划线，映射到结构体之后，结构体无法取到yaml文件中对应的值。
 			- ```
 			  conf.yaml文件如下：
-			  
-			  
+			  	experience: 
+			      - company: Example Inc.
+			        position: Software Engineer
+			        start_year: 2013 
+			        end_year: 2019 
 			  config.go部分内容如下：
 			  ```
-		- conf.yaml文件如下：
-		- mysql:
-		  rds_host: "rds_xxxxxx.com"
-		  rds_port: 3306
-		  1
-		  2
-		  3
-		  config.go部分内容如下：
 		- type Mysql struct {
 		  RdsHost string `yaml:"rds_host" mapstructure:"rds_host"`
 		  RdsPort int    `yaml:"rds_port" mapstructure:"rds_port"`
