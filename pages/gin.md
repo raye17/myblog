@@ -5,5 +5,5 @@
 	  logseq.order-list-type:: number
 	- 通过 retrurn 来中止当前中间件的后续处理流程。
 	  logseq.order-list-type:: number
-	- 通过 c.abort() + retrurn 来中止当前中间件，后续中间件的处理流程。
+	- 通过 abort() + retrurn 来中止当前中间件，后续中间件的处理流程。
 	  logseq.order-list-type:: number
