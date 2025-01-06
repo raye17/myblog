@@ -1,7 +1,5 @@
-- [[go安装]]部署
-- ## gorm
-  logseq.order-list-type:: number
-	- [[gorm]]
+## [[go安装]]部署
+-
+- ## [[gorm]]
 - ## gin
-  logseq.order-list-type:: number
 	- [[gin]]
