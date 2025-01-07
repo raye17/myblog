@@ -413,59 +413,56 @@ collapsed:: true
 				          └── http.proto
 				  ```
 	- ### 编译
-	  
-	  这一次编译命令在之前的基础上要继续加上 gRPC-Gateway相关的 `--grpc-gateway_out=proto --grpc-gateway_opt=paths=source_relative` 参数。
-	  
-	  完整的编译命令如下：
-	  
-	  ```
-	  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative --go-grpc_out**=**proto --go-grpc_opt**=**paths**=**source_relative --grpc-gateway_out**=**proto --grpc-gateway_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
-	  ```
-	  
-	  最终会编译得到一个`book.pb.gw.go`文件。
-	  
-	  ```
-	  demo
-	  └── proto
-	    ├── author
-	    │   ├── author.pb.go
-	    │   └── author.proto
-	    ├── book
-	    │   ├── book.pb.go
-	    │   ├── book.pb.gw.go
-	    │   ├── book.proto
-	    │   ├── book_grpc.pb.go
-	    │   ├── price.pb.go
-	    │   └── price.proto
-	    └── google
-	        └── api
-	            ├── annotations.proto
-	            └── http.proto
-	  ```
-	  
-	  为了方便编译可以在项目下定义`Makefile`。
-	  
-	  ```
-	  .PHONY**:** gen help
-	  
-	  PROTO_DIR**=**proto
-	  
-	  gen**:**
-	  protoc \
-	  --proto_path**=**$(PROTO_DIR) \
-	  --go_out**=**$(PROTO_DIR) \
-	  --go_opt**=**paths**=**source_relative \
-	  --go-grpc_out**=**$(PROTO_DIR) \
-	  --go-grpc_opt**=**paths**=**source_relative \
-	  --grpc-gateway_out**=**$(PROTO_DIR) \
-	  --grpc-gateway_opt**=**paths**=**source_relative \
-	  $(shell find $(PROTO_DIR) -iname "*.proto")
-	  
-	  help**:**
-	  @echo "make gen - 生成pb及grpc代码"
-	  ```
-	  
-	  后续想要编译只需在项目目录下执行`make gen`即可。
+		- 这一次编译命令在之前的基础上要继续加上 gRPC-Gateway相关的 `--grpc-gateway_out=proto --grpc-gateway_opt=paths=source_relative` 参数。
+		- 完整的编译命令如下：
+			- ```
+			  protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative --go-grpc_out=proto --go-grpc_opt=paths=source_relative --grpc-gateway_out=proto --grpc-gateway_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
+			  ```
+			  
+			  最终会编译得到一个`book.pb.gw.go`文件。
+			  
+			  ```
+			  demo
+			  └── proto
+			    ├── author
+			    │   ├── author.pb.go
+			    │   └── author.proto
+			    ├── book
+			    │   ├── book.pb.go
+			    │   ├── book.pb.gw.go
+			    │   ├── book.proto
+			    │   ├── book_grpc.pb.go
+			    │   ├── price.pb.go
+			    │   └── price.proto
+			    └── google
+			        └── api
+			            ├── annotations.proto
+			            └── http.proto
+			  ```
+			  
+			  为了方便编译可以在项目下定义`Makefile`。
+			  
+			  ```
+			  .PHONY**:** gen help
+			  
+			  PROTO_DIR**=**proto
+			  
+			  gen**:**
+			  protoc \
+			  --proto_path**=**$(PROTO_DIR) \
+			  --go_out**=**$(PROTO_DIR) \
+			  --go_opt**=**paths**=**source_relative \
+			  --go-grpc_out**=**$(PROTO_DIR) \
+			  --go-grpc_opt**=**paths**=**source_relative \
+			  --grpc-gateway_out**=**$(PROTO_DIR) \
+			  --grpc-gateway_opt**=**paths**=**source_relative \
+			  $(shell find $(PROTO_DIR) -iname "*.proto")
+			  
+			  help**:**
+			  @echo "make gen - 生成pb及grpc代码"
+			  ```
+			  
+			  后续想要编译只需在项目目录下执行`make gen`即可。
 	- ## 管理 protobuf
 	  
 	  在企业的项目开发中，我们通常会把 protobuf 文件存储到一个单独的代码库中，并在具体项目中通过`git submodule`引入。这样做的好处是能够将 protobuf 文件统一管理和维护，避免因 protobuf 文件改动导致的问题。
