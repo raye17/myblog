@@ -5,7 +5,6 @@ collapsed:: true
 	- ## protobuf语法
 		- [protobuf v3语法官方文档](https://developers.google.com/protocol-buffers/docs/proto3) [protobuf v3中文语法指南](https://www.liwenzhou.com/posts/Go/protobuf3-language-guide-zh)
 - # protobuf编译器指南
-  collapsed:: true
 	- ## 安装protobuf
 		- 从官方仓库：https://github.com/google/protobuf/releases 下载平台的预编译好的二进制文件（`protoc-<version>-<platform>.zip`）。
 			- 适用Windows 64位[protoc-3.20.1-win64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v3.20.1/protoc-3.20.1-win64.zip)
@@ -307,165 +306,163 @@ collapsed:: true
 				- ```
 				  protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
 				  ```
-	- ## 生成gRPC代码
+	- # 生成gRPC代码
 	  collapsed:: true
-		- 由于通常都是配合 gRPC 来使用 protobuf ，所以也需要基于`.proto`文件生成Go代码的同时生成 gRPC 代码。
-			- 要想生成 gRPC 代码就需要先安装 `protoc-gen-go-grpc` 插件。
+		- ## gRPC-Gateway
+			- [gRPC-Gateway](https://github.com/grpc-ecosystem/grpc-gateway) 也是日常开发中比较常用的一个工具，它同样也是根据 protobuf 生成相应的代码。
+			- ### 安装工具
+			  collapsed:: true
 				- ```
-				  go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+				  go get github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
 				  ```
-			- 上述命令会默认将插件安装到`$GOPATH/bin`，为了`protoc`编译器能找到这些插件，请确保`$GOPATH/bin`在环境变量中。
-			- 假设现在要提供一个创建书籍的 RPC 方法，那么我在`book.proto`中添加如下定义。
-				- ```
+			- ### 为protobuf文件添加注释
+			  collapsed:: true
+				- 由于通常都是配合 gRPC 来使用 protobuf ，所以也需要基于`.proto`文件生成Go代码的同时生成 gRPC 代码。
+					- 要想生成 gRPC 代码就需要先安装 `protoc-gen-go-grpc` 插件。
+						- ```
+						  go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+						  ```
+					- 上述命令会默认将插件安装到`$GOPATH/bin`，为了`protoc`编译器能找到这些插件，请确保`$GOPATH/bin`在环境变量中。
+					- 假设现在要提供一个创建书籍的 RPC 方法，那么我在`book.proto`中添加如下定义。
+						- ```
+						  // demo/proto/book/book.proto
+						  
+						  // ...省略...
+						  
+						  service BookService{
+						    rpc Create(Book)returns(Book);
+						  }
+						  ```
+					- 然后在 protoc 的编译命令添加 gRPC相关输出的参数，完整命令如下。
+						- ```
+						  protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative --go-grpc_out=proto --go-grpc_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
+						  ```
+					- 上述命令就会生成`book_grpc.pb.go`文件。
+						- ```
+						  demo
+						  └── proto
+						  ├── author
+						  │   ├── author.pb.go
+						  │   └── author.proto
+						  └── book
+						      ├── book.pb.go
+						      ├── book.proto
+						      ├── book_grpc.pb.go
+						      ├── price.pb.go
+						      └── price.proto
+						  ```
+				- 在`book.proto`文件中添加如下注释。
+				  
+				  ```
 				  // demo/proto/book/book.proto
 				  
-				  // ...省略...
+				  syntax = "proto3";
+				  
+				  // 声明protobuf中的包名
+				  package book;
+				  
+				  // 声明生成的Go代码的导入路径
+				  option go_package = "github.com/raye17/demo/proto/book";
+				  
+				  // 引入同目录下的protobuf文件（注意起始位置为proto_path的下层）
+				  import "book/price.proto";
+				  // 引入其他目录下的protobuf文件
+				  import "author/author.proto";
+				  // 引入google/protobuf/timestamp.proto文件
+				  import "google/protobuf/timestamp.proto";
+				  // 引入google/api/annotations.proto文件
+				  import "google/api/annotations.proto";
+				  
+				  message Book {
+				      string title = 1;
+				      Price price = 2;
+				      author.Info authorInfo = 3;  // 需要带package前缀
+				      // Timestamp是大写T!大写T!大写T!
+				      google.protobuf.Timestamp date = 4;  // 注意包名前缀
+				  }
 				  
 				  service BookService{
-				    rpc Create(Book)returns(Book);
+				      rpc Create(Book)returns(Book){
+				          option (google.api.http) = {
+				              post: "/v1/book"
+				              body: "*"
+				          };
+				      };
 				  }
+				  
 				  ```
-			- 然后在 protoc 的编译命令添加 gRPC相关输出的参数，完整命令如下。
-				- ```
-				  protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative --go-grpc_out=proto --go-grpc_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
-				  ```
-			- 上述命令就会生成`book_grpc.pb.go`文件。
-				- ```
-				  demo
-				  └── proto
-				  ├── author
-				  │   ├── author.pb.go
-				  │   └── author.proto
-				  └── book
-				      ├── book.pb.go
-				      ├── book.proto
-				      ├── book_grpc.pb.go
-				      ├── price.pb.go
-				      └── price.proto
-				  ```
-	- ## gRPC-Gateway
-		- [gRPC-Gateway](https://github.com/grpc-ecosystem/grpc-gateway) 也是日常开发中比较常用的一个工具，它同样也是根据 protobuf 生成相应的代码。
-		- ### 安装工具
-		  collapsed:: true
-			- ```
-			  go get github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
-			  ```
-		- ### 为protobuf文件添加注释
-		  collapsed:: true
-			- 在`book.proto`文件中添加如下注释。
-			  
-			  ```
-			  // demo/proto/book/book.proto
-			  
-			  syntax = "proto3";
-			  
-			  // 声明protobuf中的包名
-			  package book;
-			  
-			  // 声明生成的Go代码的导入路径
-			  option go_package = "github.com/raye17/demo/proto/book";
-			  
-			  // 引入同目录下的protobuf文件（注意起始位置为proto_path的下层）
-			  import "book/price.proto";
-			  // 引入其他目录下的protobuf文件
-			  import "author/author.proto";
-			  // 引入google/protobuf/timestamp.proto文件
-			  import "google/protobuf/timestamp.proto";
-			  // 引入google/api/annotations.proto文件
-			  import "google/api/annotations.proto";
-			  
-			  message Book {
-			      string title = 1;
-			      Price price = 2;
-			      author.Info authorInfo = 3;  // 需要带package前缀
-			      // Timestamp是大写T!大写T!大写T!
-			      google.protobuf.Timestamp date = 4;  // 注意包名前缀
-			  }
-			  
-			  service BookService{
-			      rpc Create(Book)returns(Book){
-			          option (google.api.http) = {
-			              post: "/v1/book"
-			              body: "*"
-			          };
-			      };
-			  }
-			  
-			  ```
-			- 此时，又引入了`google/api/annotations.proto` ，这个文件是由googleapi定义在[https://github.com/googleapis/googleapis](https://github.com/googleapis/googleapis)。
-			- 想要在项目中引入上述protobuf源文件可以像上面引入`timestamp.proto`文件一样将这个库下载到本地然后通过`--proto_path`指定，或者直接把用到的 protobuf 源文件拷贝到我们的项目中。
-			- 本例就采用第二种方法把此处用到的`google/api/annotations.proto`文件和`http.proto`文件拷贝到项目的`google/api`目录下（`annotations.proto`文件中引入了`http.proto`文件）。
-			- 此时的项目目录如下：
-				- ```
-				  demo
-				  └── proto
-				  ├── author
-				  │   ├── author.pb.go
-				  │   └── author.proto
-				  ├── book
-				  │   ├── book.pb.go
-				  │   ├── book.proto
-				  │   ├── book_grpc.pb.go
-				  │   ├── price.pb.go
-				  │   └── price.proto
-				  └── google
-				      └── api
-				          ├── annotations.proto
-				          └── http.proto
-				  ```
-	- ### 编译
-	  collapsed:: true
-		- 这一次编译命令在之前的基础上要继续加上 gRPC-Gateway相关的 `--grpc-gateway_out=proto --grpc-gateway_opt=paths=source_relative` 参数。
-		- 完整的编译命令如下：
-			- ```
-			  protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative --go-grpc_out=proto --go-grpc_opt=paths=source_relative --grpc-gateway_out=proto --grpc-gateway_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
-			  ```
-		- 最终会编译得到一个`book.pb.gw.go`文件。
-			- ```
-			  demo
-			  └── proto
-			  ├── author
-			  │   ├── author.pb.go
-			  │   └── author.proto
-			  ├── book
-			  │   ├── book.pb.go
-			  │   ├── book.pb.gw.go
-			  │   ├── book.proto
-			  │   ├── book_grpc.pb.go
-			  │   ├── price.pb.go
-			  │   └── price.proto
-			  └── google
-			      └── api
-			          ├── annotations.proto
-			          └── http.proto
-			  ```
-		- 为了方便编译可以在项目下定义`Makefile`。
-			- ```
-			  .PHONY: gen help
-			  
-			  PROTO_DIR=proto
-			  
-			  gen:
-			  	protoc \
-			  	--proto_path=$(PROTO_DIR) \
-			  	--go_out=$(PROTO_DIR) \
-			  	--go_opt=paths=source_relative \
-			  	--go-grpc_out=$(PROTO_DIR) \
-			  	--go-grpc_opt=paths=source_relative \
-			  	--grpc-gateway_out=$(PROTO_DIR) \
-			  	--grpc-gateway_opt=paths=source_relative \
-			  	$(shell find $(PROTO_DIR) -iname "*.proto")
-			  
-			  help:
-			  	@echo "make gen - 生成pb及grpc代码"
-			  
-			  ```
-		- 后续想要编译只需在项目目录下执行`make gen`即可
-	- ## 管理 protobuf
+				- 此时，又引入了`google/api/annotations.proto` ，这个文件是由googleapi定义在[https://github.com/googleapis/googleapis](https://github.com/googleapis/googleapis)。
+				- 想要在项目中引入上述protobuf源文件可以像上面引入`timestamp.proto`文件一样将这个库下载到本地然后通过`--proto_path`指定，或者直接把用到的 protobuf 源文件拷贝到我们的项目中。
+				- 本例就采用第二种方法把此处用到的`google/api/annotations.proto`文件和`http.proto`文件拷贝到项目的`google/api`目录下（`annotations.proto`文件中引入了`http.proto`文件）。
+				- 此时的项目目录如下：
+					- ```
+					  demo
+					  └── proto
+					  ├── author
+					  │   ├── author.pb.go
+					  │   └── author.proto
+					  ├── book
+					  │   ├── book.pb.go
+					  │   ├── book.proto
+					  │   ├── book_grpc.pb.go
+					  │   ├── price.pb.go
+					  │   └── price.proto
+					  └── google
+					      └── api
+					          ├── annotations.proto
+					          └── http.proto
+					  ```
+			- ### 编译
+			  collapsed:: true
+				- 这一次编译命令在之前的基础上要继续加上 gRPC-Gateway相关的 `--grpc-gateway_out=proto --grpc-gateway_opt=paths=source_relative` 参数。
+				- 完整的编译命令如下：
+					- ```
+					  protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative --go-grpc_out=proto --go-grpc_opt=paths=source_relative --grpc-gateway_out=proto --grpc-gateway_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
+					  ```
+				- 最终会编译得到一个`book.pb.gw.go`文件。
+					- ```
+					  demo
+					  └── proto
+					  ├── author
+					  │   ├── author.pb.go
+					  │   └── author.proto
+					  ├── book
+					  │   ├── book.pb.go
+					  │   ├── book.pb.gw.go
+					  │   ├── book.proto
+					  │   ├── book_grpc.pb.go
+					  │   ├── price.pb.go
+					  │   └── price.proto
+					  └── google
+					      └── api
+					          ├── annotations.proto
+					          └── http.proto
+					  ```
+				- 为了方便编译可以在项目下定义`Makefile`。
+					- ```
+					  .PHONY: gen help
+					  
+					  PROTO_DIR=proto
+					  
+					  gen:
+					  	protoc \
+					  	--proto_path=$(PROTO_DIR) \
+					  	--go_out=$(PROTO_DIR) \
+					  	--go_opt=paths=source_relative \
+					  	--go-grpc_out=$(PROTO_DIR) \
+					  	--go-grpc_opt=paths=source_relative \
+					  	--grpc-gateway_out=$(PROTO_DIR) \
+					  	--grpc-gateway_opt=paths=source_relative \
+					  	$(shell find $(PROTO_DIR) -iname "*.proto")
+					  
+					  help:
+					  	@echo "make gen - 生成pb及grpc代码"
+					  
+					  ```
+				- 后续想要编译只需在项目目录下执行`make gen`即可
+	- # 管理 protobuf
 	  
-	  在企业的项目开发中，我们通常会把 protobuf 文件存储到一个单独的代码库中，并在具体项目中通过`git submodule`引入。这样做的好处是能够将 protobuf 文件统一管理和维护，避免因 protobuf 文件改动导致的问题。
-	  
-	  本文示例代码已上传至github仓库：[https://github.com/Q1mi/demo](https://github.com/Q1mi/demo)，请点击查看完整代码。
+	  在企业的项目开发中，通常会把 protobuf 文件存储到一个单独的代码库中，并在具体项目中通过`git submodule`引入。这样做的好处是能够将 protobuf 文件统一管理和维护，避免因 protobuf 文件改动导致的问题。
 - ## 标量值类型
 	- 标量消息字段可以具有以下类型之一，表格为`.proto`文件中指定的类型以及自动生成的类中的对应类型
 	- TODO logseq不支持表格，插入链接 [protobuf语法](https://protobuf.com.cn/programming-guides/proto3/)
