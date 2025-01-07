@@ -8,5 +8,4 @@
 	  logseq.order-list-type:: number
 -
 -
-- ## trace链路追踪
 - [[链路追踪]]
