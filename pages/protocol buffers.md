@@ -101,39 +101,32 @@ collapsed:: true
 					- ```
 					  protoc -I=proto --go_out=proto --go_opt=paths=source_relative book/price.proto
 					  ```
-					  执行上述命令将会在`proto`目录下生成`book/price.pb.go`文件。
-					  
-					  ```
-					  demo
-					  └── proto
-					    └── book
-					        ├── price.pb.go
-					        └── price.proto
-					  ```
-					  
-					  此处如果不指定`--proto_path`参数那么编译命令可以简写为:
-					  
-					  ```
+					- 执行上述命令将会在`proto`目录下生成`book/price.pb.go`文件。
+						- ```
+						  demo
+						  └── proto
+						  └── book
+						      ├── price.pb.go
+						      └── price.proto
+						  ```
+					- 此处如果不指定`--proto_path`参数那么编译命令可以简写为:
+					- ```
 					  protoc --go_out=. --go_opt=paths=source_relative proto/book/price.proto
 					  ```
-					  
-					  上面的命令都是将代码生成到`demo/proto`目录，如果想要将生成的Go代码保存在其他文件夹中（例如`pb`文件夹），那么我们需要先在`demo`目录下创建一个`pb`文件夹。然后在命令行通过`--go_out=pb`指定生成的Go代码保存的路径。完整命令如下：
-					  
-					  ```
+					- 上面的命令都是将代码生成到`demo/proto`目录，如果想要将生成的Go代码保存在其他文件夹中（例如`pb`文件夹），那么需要先在`demo`目录下创建一个`pb`文件夹。然后在命令行通过`--go_out=pb`指定生成的Go代码保存的路径。完整命令如下：
+					- ```
 					  protoc --proto_path**=**proto --go_out**=**pb --go_opt**=**paths**=**source_relative book/price.proto
 					  ```
-					  
-					  执行上面的命令便会在`demo/pb`文件夹下生成Go代码。
-					  
-					  ```
+					- 执行上面的命令便会在`demo/pb`文件夹下生成Go代码。
+					- ```
 					  demo
 					  ├── pb
 					  │   └── book
 					  │       └── price.pb.go
 					  └── proto
-					    └── book
-					        ├── price.pb.go
-					        └── price.proto
+					  └── book
+					      ├── price.pb.go
+					      └── price.proto
 					  ```
 	- ### import同目录下protobuf文件
 	  
