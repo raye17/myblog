@@ -30,7 +30,7 @@ collapsed:: true
 			- `paths=source_relative`：输出文件与输入文件放在相同的相对目录中。例如，一个`protos/buzz.proto`输入文件会产生一个位于`protos/buzz.pb.go`的输出文件。
 		- 在调用`protoc`时，通过传递 `go_opt` 标志来提供特定于 `protocol-gen-go` 的标志位参数。可以传递多个`go_opt`标志位参数。例如，当执行下面的命令时：
 			- ```
-			  protoc --proto_path**=**src --go_out**=**out --go_opt**=**paths**=**source_relative foo.proto bar/baz.proto
+			  protoc --proto_path=src --go_out=out --go_opt=paths=source_relative foo.proto bar/baz.proto
 			  ```
 		- 编译器将从 `src` 目录中读取输入文件 `foo.proto` 和 `bar/baz.proto`，并将输出文件 `foo.pb.go` 和 `bar/baz.pb.go` 写入 `out` 目录。如果需要，编译器会自动创建嵌套的输出子目录，但不会创建输出目录本身。
 	- ## package
@@ -90,55 +90,53 @@ collapsed:: true
 			- ### 生成代码
 				- 假设想把最终生成的Go代码还保存在`proto`文件夹中，那么就可以执行下面的命令。
 					- ```
-					  protoc --proto_path=proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/price.proto
+					  protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative book/price.proto
+					  ```
+				- 其中：
+					- `--proto_path=proto` 表示从proto目录下读取proto文件。
+					- `--go_out=proto` 表示生成的Go代码保存的路径。
+					- `--go_opt=paths=source_relative` 表示输出文件与输入文件放在相同的相对目录中。
+					- `book/price.proto` 表示在proto目录下的`book/price.proto`文件。
+					- 此外，`--proto_path`有一个别名`-I`，上述编译命令也可以这样写。
+					  
+					  ```
+					  protoc -I**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/price.proto
 					  ```
 					  
-					  其中：
-	- `--proto_path=proto` 表示从proto目录下读取proto文件。
-	- `--go_out=proto` 表示生成的Go代码保存的路径。
-	- `--go_opt=paths=source_relative` 表示输出文件与输入文件放在相同的相对目录中。
-	- `book/price.proto` 表示在proto目录下的`book/price.proto`文件。
-	  
-	  此外，`--proto_path`有一个别名`-I`，上述编译命令也可以这样写。
-	  
-	  ```
-	  protoc -I**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/price.proto
-	  ```
-	  
-	  执行上述命令将会在`proto`目录下生成`book/price.pb.go`文件。
-	  
-	  ```
-	  demo
-	  └── proto
-	    └── book
-	        ├── price.pb.go
-	        └── price.proto
-	  ```
-	  
-	  此处如果不指定`--proto_path`参数那么编译命令可以简写为:
-	  
-	  ```
-	  protoc --go_out**=**. --go_opt**=**paths**=**source_relative proto/book/price.proto
-	  ```
-	  
-	  上面的命令都是将代码生成到`demo/proto`目录，如果想要将生成的Go代码保存在其他文件夹中（例如`pb`文件夹），那么我们需要先在`demo`目录下创建一个`pb`文件夹。然后在命令行通过`--go_out=pb`指定生成的Go代码保存的路径。完整命令如下：
-	  
-	  ```
-	  protoc --proto_path**=**proto --go_out**=**pb --go_opt**=**paths**=**source_relative book/price.proto
-	  ```
-	  
-	  执行上面的命令便会在`demo/pb`文件夹下生成Go代码。
-	  
-	  ```
-	  demo
-	  ├── pb
-	  │   └── book
-	  │       └── price.pb.go
-	  └── proto
-	    └── book
-	        ├── price.pb.go
-	        └── price.proto
-	  ```
+					  执行上述命令将会在`proto`目录下生成`book/price.pb.go`文件。
+					  
+					  ```
+					  demo
+					  └── proto
+					    └── book
+					        ├── price.pb.go
+					        └── price.proto
+					  ```
+					  
+					  此处如果不指定`--proto_path`参数那么编译命令可以简写为:
+					  
+					  ```
+					  protoc --go_out**=**. --go_opt**=**paths**=**source_relative proto/book/price.proto
+					  ```
+					  
+					  上面的命令都是将代码生成到`demo/proto`目录，如果想要将生成的Go代码保存在其他文件夹中（例如`pb`文件夹），那么我们需要先在`demo`目录下创建一个`pb`文件夹。然后在命令行通过`--go_out=pb`指定生成的Go代码保存的路径。完整命令如下：
+					  
+					  ```
+					  protoc --proto_path**=**proto --go_out**=**pb --go_opt**=**paths**=**source_relative book/price.proto
+					  ```
+					  
+					  执行上面的命令便会在`demo/pb`文件夹下生成Go代码。
+					  
+					  ```
+					  demo
+					  ├── pb
+					  │   └── book
+					  │       └── price.pb.go
+					  └── proto
+					    └── book
+					        ├── price.pb.go
+					        └── price.proto
+					  ```
 	- ### import同目录下protobuf文件
 	  
 	  随着业务的复杂度上升，我们可能会定义多个`.proto`源文件，然后根据需要引入其他的protobuf文件。
