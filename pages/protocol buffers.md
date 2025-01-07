@@ -5,6 +5,7 @@ collapsed:: true
 	- ## protobuf语法
 		- [protobuf v3语法官方文档](https://developers.google.com/protocol-buffers/docs/proto3) [protobuf v3中文语法指南](https://www.liwenzhou.com/posts/Go/protobuf3-language-guide-zh)
 - # protobuf编译器指南
+  collapsed:: true
 	- ## 安装protobuf
 		- 从官方仓库：https://github.com/google/protobuf/releases 下载平台的预编译好的二进制文件（`protoc-<version>-<platform>.zip`）。
 			- 适用Windows 64位[protoc-3.20.1-win64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v3.20.1/protoc-3.20.1-win64.zip)
@@ -16,6 +17,7 @@ collapsed:: true
 			- include 目录下的是 google 定义的`.proto`文件，`import "google/protobuf/timestamp.proto"`就是从此处导入。
 			  需要将下载得到的可执行文件`protoc`所在的 bin 目录加到电脑的环境变量中。
 - # 生成go代码
+  collapsed:: true
 	- ## 编译器调用
 	  id:: 677cbdf5-ca4a-422b-908e-b6d760fc3a08
 		- protocol buffer编译器需要一个插件来根据提供的proto文件生成 Go 代码，使用下面的命令安装插件。
@@ -53,14 +55,13 @@ collapsed:: true
 			  ```
 		- 由于所有 `.proto` 文件到其 Go 导入路径的映射可能非常大，这种指定 Go 导入路径的模式通常由控制整个依赖树的某些构建工具（例如 Bazel）执行。 如果给定的 `.proto` 文件有重复条目，则指定的最后一个条目优先。
 		- 对于 `go_package` 选项和 `M` 标志位，它们的值可以包含一个显式的包名称，该名称与导入路径之间用分号分隔。 例如：`“example.com/protos/foo;package_name”`。 不鼓励这种用法，因为默认情况下包名称将以合理的方式从导入路径派生。
-		- 导入路径用于确定一个 `.proto` 文件导入另一个 `.proto` 文件时必须生成哪些导入语句。 例如，如果 `a.proto `导入 `b.proto`，则生成的 `a.pb.go` 文件需要导入包含生成的 `b.pb.go` 文件的 Go 包（除非两个文件在同一个包中）。 导入路径也用于构造输出文件名。 有关详细信息，请参阅上面的 编译器调用部分。
+		- 导入路径用于确定一个 `.proto` 文件导入另一个 `.proto` 文件时必须生成哪些导入语句。 例如，如果 `a.proto `导入 `b.proto`，则生成的 `a.pb.go` 文件需要导入包含生成的 `b.pb.go` 文件的 Go 包（除非两个文件在同一个包中）。 导入路径也用于构造输出文件名。 有关详细信息，请参阅上面的[编译器调用](logseq://graph/raye17.github.io?block-id=677cbdf5-ca4a-422b-908e-b6d760fc3a08)部分。
 		- Go 导入路径和 `.proto` 文件中的`package`说明符之间没有关联。 后者仅与 protobuf 命名空间相关，而前者仅与 Go 命名空间相关。 此外，Go 导入路径和 `.proto` 导入路径之间没有关联。
 		-
 	- # Go语言使用protoc示例
 	  collapsed:: true
 		- 新建一个名为`demo`的项目，并且将项目中定义的`.proto`文件都保存在`proto`目录下。后续的操作命令默认都在`demo`目录下执行。
 		- ## 普通编译
-		  collapsed:: true
 			- 定义一个单独的`proto`文件并进行编译。
 			- ### 定义proto
 			  collapsed:: true
