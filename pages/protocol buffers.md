@@ -176,18 +176,18 @@ collapsed:: true
 	- ## import其他目录下文件
 		- 在`demo/proto`目录下新建了一个`author`文件夹，用来存放与 author 相关的 protobuf 文件。例如定义一个表示作者信息的`author.proto`文件，其内容如下：
 			- ```
-			  *// demo/proto/author/author.proto
-			  *
-			  syntax **=** "proto3";
+			  // demo/proto/author/author.proto
 			  
-			  *// 声明protobuf中的包名
-			  *package author;
+			  syntax = "proto3";
 			  
-			  *// 声明生成的Go代码的导入路径
-			  *option go_package **=** "github.com/Q1mi/demo/proto/author";
+			  // 声明protobuf中的包名
+			  package author;
+			  
+			  // 声明生成的Go代码的导入路径
+			  option go_package = "github.com/raye17/demo/proto/author";
 			  
 			  message Info {
-			    string name **=** 1;
+			    string name = 1;
 			  }
 			  ```
 			  
@@ -237,20 +237,18 @@ collapsed:: true
 			  ```
 			  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
 			  ```
-			  
-			  此时的目录结构：
-			  
-			  ```
+			- 此时的目录结构：
+			- ```
 			  demo
 			  └── proto
-			    ├── author
-			    │   ├── author.pb.go
-			    │   └── author.proto
-			    └── book
-			        ├── book.pb.go
-			        ├── book.proto
-			        ├── price.pb.go
-			        └── price.proto
+			  ├── author
+			  │   ├── author.pb.go
+			  │   └── author.proto
+			  └── book
+			      ├── book.pb.go
+			      ├── book.proto
+			      ├── price.pb.go
+			      └── price.proto
 			  ```
 	- ### import google proto文件
 	  
