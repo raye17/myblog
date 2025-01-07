@@ -60,20 +60,21 @@ collapsed:: true
 		- ## 普通编译
 			- 定义一个单独的`proto`文件并进行编译。
 			- ### 定义proto
+			  collapsed:: true
 				- 新建一个`price.proto`文件。
 					- ```
-					  *// proto/book/price.proto
-					  *
-					  syntax **=** "proto3";
+					  // proto/book/price.proto
+					  
+					  syntax = "proto3";
 					  
 					  package book;
 					  
-					  *// 声明生成Go代码的导入路径（import path）
-					  *option go_package **=** "github.com//demo/proto/book";
+					  // 声明生成Go代码的导入路径（import path）
+					  option go_package = "github.com/raye17/demo/proto/book";
 					  
 					  message Price {
-					    int64 market_price **=** 1;  *// 建议使用下划线的命名方式
-					  *    int64 sale_price **=** 2;
+					    int64 market_price = 1;  // 建议使用下划线的命名方式
+					      int64 sale_price = 2;
 					  }
 					  ```
 					  
@@ -87,15 +88,13 @@ collapsed:: true
 					    └── book
 					        └── price.proto
 					  ```
-	- #### 生成代码
-	  
-	  假设我们想把最终生成的Go代码还保存在`proto`文件夹中，那么就可以执行下面的命令。
-	  
-	  ```
-	  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/price.proto
-	  ```
-	  
-	  其中：
+			- ### 生成代码
+				- 假设我们想把最终生成的Go代码还保存在`proto`文件夹中，那么就可以执行下面的命令。
+				- ```
+				  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/price.proto
+				  ```
+				  
+				  其中：
 	- `--proto_path=proto` 表示从proto目录下读取proto文件。
 	- `--go_out=proto` 表示生成的Go代码保存的路径。
 	- `--go_opt=paths=source_relative` 表示输出文件与输入文件放在相同的相对目录中。
