@@ -275,45 +275,40 @@ collapsed:: true
 			  }
 			  ```
 			- 那么这个 `google/protobuf/timestamp.proto` 是从哪里导入的呢
-			- 通常我们下载 [protobuf](https://github.com/google/protobuf/releases)编译器的时候会解压得到如下文件：
+			- 通常我们下载 [protobuf](https://github.com/google/protobuf/releases)编译器的时候会得到文件：
+			- 其中：
+				- bin 目录下的 protoc 是可执行文件。
+				- include 目录下的是 google 定义的`.proto`文件，我们`import "google/protobuf/timestamp.proto"`就是从此处导入。
+			- 需要将下载得到的可执行文件`protoc`所在的 bin 目录加到我们电脑的环境变量中。
+			- 如果你不是通过这种方式安装的 protobuf 那么你也可以手动将 [Google 定义的protobuf文件](https://github.com/protocolbuffers/protobuf)下载到本地（git clone或者go get，protobuf文件在src下），然后通过 `--proto_path`指定其路径。
 			  
-			  ![protoc](https://www.liwenzhou.com/images/Go/grpc/protoc.png)
+			  ```
+			  protoc --proto_path**=**/Users/liwenzhou/workspace/go/pkg/mod/github.com/protocolbuffers/protobuf@v3.21.2+incompatible/src/ --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
+			  ```
 			  
-			  其中：
-	- bin 目录下的 protoc 是可执行文件。
-	- include 目录下的是 google 定义的`.proto`文件，我们`import "google/protobuf/timestamp.proto"`就是从此处导入。
-	  
-	  我们需要将下载得到的可执行文件`protoc`所在的 bin 目录加到我们电脑的环境变量中。
-	  
-	  如果你不是通过这种方式安装的 protobuf 那么你也可以手动将 [Google 定义的protobuf文件](https://github.com/protocolbuffers/protobuf)下载到本地（git clone或者go get，protobuf文件在src下），然后通过 `--proto_path`指定其路径。
-	  
-	  ```
-	  protoc --proto_path**=**/Users/liwenzhou/workspace/go/pkg/mod/github.com/protocolbuffers/protobuf@v3.21.2+incompatible/src/ --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
-	  ```
-	  
-	  或者你还可以简单粗暴的把下载好的 protobuf 文件拷贝到你项目的 proto 目录下。
-	  
-	  ```
-	  demo
-	  └── proto
-	    ├── author
-	    │   ├── author.pb.go
-	    │   └── author.proto
-	    ├── book
-	    │   ├── book.pb.go
-	    │   ├── book.proto
-	    │   ├── price.pb.go
-	    │   └── price.proto
-	    └── google
-	        └── protobuf
-	            └── timestamp.proto
-	  ```
-	  
-	  然后执行下面的编译命令：
-	  
-	  ```
-	  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
-	  ```
+			  或者你还可以简单粗暴的把下载好的 protobuf 文件拷贝到你项目的 proto 目录下。
+			  
+			  ```
+			  demo
+			  └── proto
+			    ├── author
+			    │   ├── author.pb.go
+			    │   └── author.proto
+			    ├── book
+			    │   ├── book.pb.go
+			    │   ├── book.proto
+			    │   ├── price.pb.go
+			    │   └── price.proto
+			    └── google
+			        └── protobuf
+			            └── timestamp.proto
+			  ```
+			  
+			  然后执行下面的编译命令：
+			  
+			  ```
+			  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
+			  ```
 	- ## 生成gRPC代码
 	  
 	  由于通常我们都是配合 gRPC 来使用 protobuf ，所以我们也需要基于`.proto`文件生成Go代码的同时生成 gRPC 代码。
