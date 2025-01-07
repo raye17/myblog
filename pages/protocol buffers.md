@@ -18,6 +18,7 @@ collapsed:: true
 			  需要将下载得到的可执行文件`protoc`所在的 bin 目录加到电脑的环境变量中。
 - # 生成go代码
 	- ## 编译器调用
+	  collapsed:: true
 		- protocol buffer编译器需要一个插件来根据提供的proto文件生成 Go 代码，使用下面的命令安装插件。
 			- ```
 			  go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
@@ -28,18 +29,14 @@ collapsed:: true
 			- `paths=import`：输出文件放在以 Go 包的导入路径命名的目录中。例如，`protos/buzz.proto`文件中带有`example.com/project/protos/fizz`的导入路径，则输出的生成文件会保存在`example.com/project/protos/fizz/buzz.pb.go`。如果未指定路径标志，这就是默认输出模式。
 			- `module=$PREFIX`：输出文件放在以 Go 包的导入路径命名的目录中，但是从输出文件名中删除了指定的目录前缀。例如，输入文件 `pros/buzz.proto`，其导入路径为 `example.com/project/protos/fizz` 并指定`example.com/project`为`module`前缀，结果会产生一个名为 `pros/fizz/buzz.pb.go` 的输出文件。在module路径之外生成任何 Go 包都会导致错误。此模式对于将生成的文件直接输出到 Go 模块非常有用。
 			- `paths=source_relative`：输出文件与输入文件放在相同的相对目录中。例如，一个`protos/buzz.proto`输入文件会产生一个位于`protos/buzz.pb.go`的输出文件。
-			  
-			  在调用`protoc`时，通过传递 `go_opt` 标志来提供特定于 `protocol-gen-go` 的标志位参数。可以传递多个`go_opt`标志位参数。例如，当执行下面的命令时：
-			  
-			  ```
+		- 在调用`protoc`时，通过传递 `go_opt` 标志来提供特定于 `protocol-gen-go` 的标志位参数。可以传递多个`go_opt`标志位参数。例如，当执行下面的命令时：
+			- ```
 			  protoc --proto_path**=**src --go_out**=**out --go_opt**=**paths**=**source_relative foo.proto bar/baz.proto
 			  ```
-			  
-			  编译器将从 `src` 目录中读取输入文件 `foo.proto` 和 `bar/baz.proto`，并将输出文件 `foo.pb.go` 和 `bar/baz.pb.go` 写入 `out` 目录。如果需要，编译器会自动创建嵌套的输出子目录，但不会创建输出目录本身。
+		- 编译器将从 `src` 目录中读取输入文件 `foo.proto` 和 `bar/baz.proto`，并将输出文件 `foo.pb.go` 和 `bar/baz.pb.go` 写入 `out` 目录。如果需要，编译器会自动创建嵌套的输出子目录，但不会创建输出目录本身。
 	- ## package
-	  
-	  为了生成 Go 代码，必须为每个 `.proto` 文件（包括那些被生成的 `.proto` 文件传递依赖的文件）提供 Go 包的导入路径。有两种方法可以指定 Go 导入路径：
-	- 通过在 `.proto` 文件中声明它。
+		- 为了生成 Go 代码，必须为每个 `.proto` 文件（包括那些被生成的 `.proto` 文件传递依赖的文件）提供 Go 包的导入路径。有两种方法可以指定 Go 导入路径：
+			- 通过在 `.proto` 文件中声明它。
 	- 通过在调用 `protoc` 时在命令行上声明它。
 	  
 	  我们建议在 `.proto` 文件中声明它，以便 `.proto` 文件的 Go 包可以与 `.proto` 文件本身集中标识，并简化调用 `protoc` 时传递的标志集。 如果给定 `.proto` 文件的 Go 导入路径由 `.proto` 文件本身和命令行提供，则后者优先于前者。
