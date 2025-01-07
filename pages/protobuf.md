@@ -1,4 +1,6 @@
-## 标量值类型
+-
+-
+- ## 标量值类型
 	- 标量消息字段可以具有以下类型之一，表格为`.proto`文件中指定的类型以及自动生成的类中的对应类型
 	- TODO logseq不支持表格，插入链接 [protobuf语法](https://protobuf.com.cn/programming-guides/proto3/)
 - ## 更新protobuf包 #go
@@ -48,5 +50,4 @@
 		  logseq.order-list-type:: number
 		- **注意**，更新protobuf包可能会引入不兼容的更改，因此在进行更新之前，请确保了解这些更改，并在更新后彻底测试项目。
 		  logseq.order-list-type:: number
--
 -
