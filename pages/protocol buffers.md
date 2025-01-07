@@ -30,8 +30,10 @@ collapsed:: true
 		- 在调用`protoc`时，通过传递 `go_opt` 标志来提供特定于 `protocol-gen-go` 的标志位参数。可以传递多个`go_opt`标志位参数。例如，当执行下面的命令时：
 			- ```
 			  protoc --proto_path=src --go_out=out --go_opt=paths=source_relative foo.proto bar/baz.proto
+			  
+			   protoc --proto_path=./api/seal --proto_path=D:\GOPATH\bin --go_out=./api/seal --govalidators_out=./api/seal --go-triple_out=./api/seal ./api/seal/seal.proto
 			  ```
-		- 编译器将从 `src` 目录中读取输入文件 `foo.proto` 和 `bar/baz.proto`，并将输出文件 `foo.pb.go` 和 `bar/baz.pb.go` 写入 `out` 目录。如果需要，编译器会自动创建嵌套的输出子目录，但不会创建输出目录本身。
+		-
 	- ## package
 		- 为了生成 Go 代码，必须为每个 `.proto` 文件（包括那些被生成的 `.proto` 文件传递依赖的文件）提供 Go 包的导入路径。有两种方法可以指定 Go 导入路径：
 			- 通过在 `.proto` 文件中声明它。
