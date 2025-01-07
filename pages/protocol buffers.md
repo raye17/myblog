@@ -133,7 +133,8 @@ collapsed:: true
 					      ├── price.pb.go
 					      └── price.proto
 					  ```
-	- ### import同目录下protobuf文件
+	- ## import同目录下protobuf文件
+	  collapsed:: true
 		- 随着业务的复杂度上升，可能会定义多个`.proto`源文件，然后根据需要引入其他的protobuf文件。
 		- 在这个示例中，在`demo/proto/book`目录下新建一个`book.proto`文件，它通过`import "book/price.proto";`语句引用了同目录下的`price.proto`文件。
 		- ```
@@ -159,101 +160,98 @@ collapsed:: true
 			- ```
 			  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto
 			  ```
-	- 这里有几点需要注意：
-	- 因为通过编译命令指定`--proto_path=proto`，所以import导入语句需要从`demo/proto`文件夹的下层目录`book`这一层开始写。
-	- 因为导入的`price.proto`与`book.proto`同属于一个`package book;`，所以可以直接使用`price`作为类型，无需添加 package 前缀（即无需写成`book.price`）。
-	- 上述编译命令最终会生成`demo/proto/book/book.pb.go`文件。
-	  
-	  ```
-	  demo
-	  └── proto
-	    └── book
-	        ├── book.pb.go
-	        ├── book.proto
-	        ├── price.pb.go
-	        └── price.proto
-	  ```
-	- ### import其他目录下文件
-	  
-	  我们在`demo/proto`目录下新建了一个`author`文件夹，用来存放与 author 相关的 protobuf 文件。例如我们定义一个表示作者信息的`author.proto`文件，其内容如下：
-	  
-	  ```
-	  *// demo/proto/author/author.proto
-	  *
-	  syntax **=** "proto3";
-	  
-	  *// 声明protobuf中的包名
-	  *package author;
-	  
-	  *// 声明生成的Go代码的导入路径
-	  *option go_package **=** "github.com/Q1mi/demo/proto/author";
-	  
-	  message Info {
-	    string name **=** 1;
-	  }
-	  ```
-	  
-	  此时的目录结构：
-	  
-	  ```
-	  demo
-	  └── proto
-	    ├── author
-	    │   └── author.proto
-	    └── book
-	        ├── book.pb.go
-	        ├── book.proto
-	        ├── price.pb.go
-	        └── price.proto
-	  ```
-	  
-	  假设我们的 book 需要增加一个作者信息的字段——`authorInfo`，这时我们需要在`demo/proto/book/book.proto`中导入其他目录下的 `author.proto` 文件。具体改动如下。
-	  
-	  ```
-	  *// proto/proto/book/book.proto
-	  *
-	  syntax **=** "proto3";
-	  
-	  *// 声明protobuf中的包名
-	  *package book;
-	  
-	  *// 声明生成的Go代码的导入路径
-	  *option go_package **=** "github.com/Q1mi/demo/proto/book";
-	  
-	  *// 引入同目录下的protobuf文件（注意起始位置为proto_path的下层）
-	  *import "book/price.proto";
-	  *// 引入其他目录下的protobuf文件
-	  *import "author/author.proto";
-	  
-	  message Book {
-	    string title **=** 1;
-	    Price price **=** 2;
-	    author.Info authorInfo **=** 3;  *// 需要带package前缀
-	  *}
-	  ```
-	  
-	  我们通过`import "author/author.proto";`导入了`author`包的`author.proto`文件，所以在`book`包下使用`Info`类型时需要添加其包名前缀即`author.Info`。
-	  
-	  编译命令如下：
-	  
-	  ```
-	  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
-	  ```
-	  
-	  此时的目录结构：
-	  
-	  ```
-	  demo
-	  └── proto
-	    ├── author
-	    │   ├── author.pb.go
-	    │   └── author.proto
-	    └── book
-	        ├── book.pb.go
-	        ├── book.proto
-	        ├── price.pb.go
-	        └── price.proto
-	  ```
+		- 这里有几点需要注意：
+		- 因为通过编译命令指定`--proto_path=proto`，所以import导入语句需要从`demo/proto`文件夹的下层目录`book`这一层开始写。
+		- 因为导入的`price.proto`与`book.proto`同属于一个`package book;`，所以可以直接使用`price`作为类型，无需添加 package 前缀（即无需写成`book.price`）。
+		- 上述编译命令最终会生成`demo/proto/book/book.pb.go`文件。
+			- ```
+			  demo
+			  └── proto
+			    └── book
+			        ├── book.pb.go
+			        ├── book.proto
+			        ├── price.pb.go
+			        └── price.proto
+			  ```
+	- ## import其他目录下文件
+		- 在`demo/proto`目录下新建了一个`author`文件夹，用来存放与 author 相关的 protobuf 文件。例如定义一个表示作者信息的`author.proto`文件，其内容如下：
+			- ```
+			  *// demo/proto/author/author.proto
+			  *
+			  syntax **=** "proto3";
+			  
+			  *// 声明protobuf中的包名
+			  *package author;
+			  
+			  *// 声明生成的Go代码的导入路径
+			  *option go_package **=** "github.com/Q1mi/demo/proto/author";
+			  
+			  message Info {
+			    string name **=** 1;
+			  }
+			  ```
+			  
+			  此时的目录结构：
+			  
+			  ```
+			  demo
+			  └── proto
+			    ├── author
+			    │   └── author.proto
+			    └── book
+			        ├── book.pb.go
+			        ├── book.proto
+			        ├── price.pb.go
+			        └── price.proto
+			  ```
+			  
+			  假设我们的 book 需要增加一个作者信息的字段——`authorInfo`，这时我们需要在`demo/proto/book/book.proto`中导入其他目录下的 `author.proto` 文件。具体改动如下。
+			  
+			  ```
+			  *// proto/proto/book/book.proto
+			  *
+			  syntax **=** "proto3";
+			  
+			  *// 声明protobuf中的包名
+			  *package book;
+			  
+			  *// 声明生成的Go代码的导入路径
+			  *option go_package **=** "github.com/Q1mi/demo/proto/book";
+			  
+			  *// 引入同目录下的protobuf文件（注意起始位置为proto_path的下层）
+			  *import "book/price.proto";
+			  *// 引入其他目录下的protobuf文件
+			  *import "author/author.proto";
+			  
+			  message Book {
+			    string title **=** 1;
+			    Price price **=** 2;
+			    author.Info authorInfo **=** 3;  *// 需要带package前缀
+			  *}
+			  ```
+			  
+			  我们通过`import "author/author.proto";`导入了`author`包的`author.proto`文件，所以在`book`包下使用`Info`类型时需要添加其包名前缀即`author.Info`。
+			  
+			  编译命令如下：
+			  
+			  ```
+			  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
+			  ```
+			  
+			  此时的目录结构：
+			  
+			  ```
+			  demo
+			  └── proto
+			    ├── author
+			    │   ├── author.pb.go
+			    │   └── author.proto
+			    └── book
+			        ├── book.pb.go
+			        ├── book.proto
+			        ├── price.pb.go
+			        └── price.proto
+			  ```
 	- ### import google proto文件
 	  
 	  有时候我们也需要在我们定义的 protobuf 文件中使用 Google 定义的类型，例如`Timestamp`、`Any`等。
