@@ -212,7 +212,7 @@ collapsed:: true
 				  package book;
 				  
 				  // 声明生成的Go代码的导入路径
-				  option go_package = "github.com/Q1mi/demo/proto/book";
+				  option go_package = "github.com/raye17/demo/proto/book";
 				  
 				  // 引入同目录下的protobuf文件（注意起始位置为proto_path的下层）
 				  import "book/price.proto";
@@ -220,19 +220,16 @@ collapsed:: true
 				  import "author/author.proto";
 				  
 				  message Book {
-				    string title **= 1;
-				    Price price **=** 2;
-				    author.Info authorInfo **=** 3;  *// 需要带package前缀
-				  *}
+				    string title = 1;
+				    Price price = 2;
+				    author.Info authorInfo = 3;  // 需要带package前缀
+				  }
 				  ```
-				  
-				  我们通过`import "author/author.proto";`导入了`author`包的`author.proto`文件，所以在`book`包下使用`Info`类型时需要添加其包名前缀即`author.Info`。
-				  
-				  编译命令如下：
-				  
-				  ```
-				  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
-				  ```
+			- 通过`import "author/author.proto";`导入了`author`包的`author.proto`文件，所以在`book`包下使用`Info`类型时需要添加其包名前缀即`author.Info`。
+			- 编译命令如下：
+			- ```
+			  protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
+			  ```
 			- 此时的目录结构：
 			- ```
 			  demo
