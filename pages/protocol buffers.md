@@ -30,8 +30,8 @@ collapsed:: true
 		- 在调用`protoc`时，通过传递 `go_opt` 标志来提供特定于 `protocol-gen-go` 的标志位参数。可以传递多个`go_opt`标志位参数。例如，当执行下面的命令时：
 			- ```
 			  protoc --proto_path=src --go_out=out --go_opt=paths=source_relative foo.proto bar/baz.proto
-			  
-			   protoc --proto_path=./api/seal --proto_path=D:\GOPATH\bin --go_out=./api/seal --govalidators_out=./api/seal --go-triple_out=./api/seal ./api/seal/seal.proto
+			  编译器将从 src 目录中读取输入文件 foo.proto 和 bar/baz.proto，并将输出文件 foo.pb.go 和 bar/baz.pb.go 写入 out 目录。如果需要，编译器会自动创建嵌套的输出子目录，但不会创建输出目录本身。
+			  protoc --proto_path=./api/seal --proto_path=D:\GOPATH\bin --go_out=./api/seal --govalidators_out=./api/seal --go-triple_out=./api/seal ./api/seal/seal.proto
 			  ```
 		-
 	- ## package
@@ -43,17 +43,17 @@ collapsed:: true
 			- ```
 			  option go_package = "example.com/project/protos/fizz";
 			  ```
-			- 调用编译器时，可以在命令行上指定 Go 导入路径，方法是传递一个或多个 `M${PROTO_FILE}=${GO_IMPORT_PATH}` 标志位。用法示例：
-				- ```
-				  protoc --proto_path=src \
-				  --go_opt=Mprotos/buzz.proto=example.com/project/protos/fizz \
-				  --go_opt=Mprotos/bar.proto=example.com/project/protos/foo \
-				  protos/buzz.proto protos/bar.proto
-				  ```
-			- 由于所有 `.proto` 文件到其 Go 导入路径的映射可能非常大，这种指定 Go 导入路径的模式通常由控制整个依赖树的某些构建工具（例如 Bazel）执行。 如果给定的 `.proto` 文件有重复条目，则指定的最后一个条目优先。
-			- 对于 `go_package` 选项和 `M` 标志位，它们的值可以包含一个显式的包名称，该名称与导入路径之间用分号分隔。 例如：`“example.com/protos/foo;package_name”`。 不鼓励这种用法，因为默认情况下包名称将以合理的方式从导入路径派生。
-			- 导入路径用于确定一个 `.proto` 文件导入另一个 `.proto` 文件时必须生成哪些导入语句。 例如，如果 `a.proto `导入 `b.proto`，则生成的 `a.pb.go` 文件需要导入包含生成的 `b.pb.go` 文件的 Go 包（除非两个文件在同一个包中）。 导入路径也用于构造输出文件名。 有关详细信息，请参阅上面的“编译器调用”部分。
-			- Go 导入路径和 `.proto` 文件中的`package`说明符之间没有关联。 后者仅与 protobuf 命名空间相关，而前者仅与 Go 命名空间相关。 此外，Go 导入路径和 `.proto` 导入路径之间没有关联。
+		- 调用编译器时，可以在命令行上指定 Go 导入路径，方法是传递一个或多个 `M${PROTO_FILE}=${GO_IMPORT_PATH}` 标志位。用法示例：
+			- ```
+			  protoc --proto_path=src \
+			  --go_opt=Mprotos/buzz.proto=example.com/project/protos/fizz \
+			  --go_opt=Mprotos/bar.proto=example.com/project/protos/foo \
+			  protos/buzz.proto protos/bar.proto
+			  ```
+		- 由于所有 `.proto` 文件到其 Go 导入路径的映射可能非常大，这种指定 Go 导入路径的模式通常由控制整个依赖树的某些构建工具（例如 Bazel）执行。 如果给定的 `.proto` 文件有重复条目，则指定的最后一个条目优先。
+		- 对于 `go_package` 选项和 `M` 标志位，它们的值可以包含一个显式的包名称，该名称与导入路径之间用分号分隔。 例如：`“example.com/protos/foo;package_name”`。 不鼓励这种用法，因为默认情况下包名称将以合理的方式从导入路径派生。
+		- 导入路径用于确定一个 `.proto` 文件导入另一个 `.proto` 文件时必须生成哪些导入语句。 例如，如果 `a.proto `导入 `b.proto`，则生成的 `a.pb.go` 文件需要导入包含生成的 `b.pb.go` 文件的 Go 包（除非两个文件在同一个包中）。 导入路径也用于构造输出文件名。 有关详细信息，请参阅上面的“编译器调用”部分。
+		- Go 导入路径和 `.proto` 文件中的`package`说明符之间没有关联。 后者仅与 protobuf 命名空间相关，而前者仅与 Go 命名空间相关。 此外，Go 导入路径和 `.proto` 导入路径之间没有关联。
 		-
 	- # Go语言使用protoc示例
 	  collapsed:: true
