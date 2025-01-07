@@ -280,13 +280,12 @@ collapsed:: true
 				- bin 目录下的 protoc 是可执行文件。
 				- include 目录下的是 google 定义的`.proto`文件，我们`import "google/protobuf/timestamp.proto"`就是从此处导入。
 			- 需要将下载得到的可执行文件`protoc`所在的 bin 目录加到我们电脑的环境变量中。
-			- 如果你不是通过这种方式安装的 protobuf 那么你也可以手动将 [Google 定义的protobuf文件](https://github.com/protocolbuffers/protobuf)下载到本地（git clone或者go get，protobuf文件在src下），然后通过 `--proto_path`指定其路径。
+			- 如果不是通过这种方式安装的 protobuf ，也可以手动将 [Google 定义的protobuf文件](https://github.com/protocolbuffers/protobuf)下载到本地（git clone或者go get，protobuf文件在src下），然后通过 `--proto_path`指定其路径。
 			  
 			  ```
-			  protoc --proto_path**=**/Users/liwenzhou/workspace/go/pkg/mod/github.com/protocolbuffers/protobuf@v3.21.2+incompatible/src/ --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
+			  protoc --proto_path=/Users/liwenzhou/workspace/go/pkg/mod/github.com/protocolbuffers/protobuf@v3.21.2+incompatible/src/ --proto_path=proto --go_out=proto --go_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
 			  ```
 			  
-			  或者你还可以简单粗暴的把下载好的 protobuf 文件拷贝到你项目的 proto 目录下。
 			  
 			  ```
 			  demo
