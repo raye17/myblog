@@ -1,9 +1,12 @@
 # protocol buffers
-collapsed:: true
 	- ## protobuf介绍
 		- [Protobuf](https://developers.google.com/protocol-buffers)全称`Protocol Buffer`，是 Google 公司于2008年开源的一种语言无关、平台无关、可扩展的用于序列化结构化数据——类似于XML，但比XML更小、更快、更简单，它可用于（数据）通信协议、数据存储等。你只需要定义一次你想要的数据结构，然后你就可以使用特殊生成的源代码来轻松地从各种数据流和各种语言中写入和读取你的结构化数据。目前 Protobuf 被广泛用作微服务中的通信协议。
 	- ## protobuf语法
 		- [protobuf v3语法官方文档](https://developers.google.com/protocol-buffers/docs/proto3) [protobuf v3中文语法指南](https://www.liwenzhou.com/posts/Go/protobuf3-language-guide-zh)
+		- ## 标量值类型
+		  collapsed:: true
+			- 标量消息字段可以具有以下类型之一，表格为`.proto`文件中指定的类型以及自动生成的类中的对应类型
+			- TODO logseq不支持表格，插入链接 [protobuf语法](https://protobuf.com.cn/programming-guides/proto3/)
 - # protobuf编译器指南
   collapsed:: true
 	- ## 安装protobuf
@@ -469,9 +472,6 @@ collapsed:: true
 - # 管理 protobuf
   
   在企业的项目开发中，通常会把 protobuf 文件存储到一个单独的代码库中，并在具体项目中通过`git submodule`引入。这样做的好处是能够将 protobuf 文件统一管理和维护，避免因 protobuf 文件改动导致的问题。
-- ## 标量值类型
-	- 标量消息字段可以具有以下类型之一，表格为`.proto`文件中指定的类型以及自动生成的类中的对应类型
-	- TODO logseq不支持表格，插入链接 [protobuf语法](https://protobuf.com.cn/programming-guides/proto3/)
 - ## 更新protobuf包 #go
 	- 更新protobuf包涉及以下几个步骤：
 		- **更新protobuf编译器**：确保使用的是最新版本的protobuf编译器。
