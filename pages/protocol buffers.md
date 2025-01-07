@@ -248,41 +248,38 @@ collapsed:: true
 		- 有时候也需要在定义的 protobuf 文件中使用 Google 定义的类型，例如`Timestamp`、`Any`等。
 		- 例如我们要为book 添加出版日期——`date`字段，就可以通过 `import "google/protobuf/timestamp.proto";`导入并使用`Timestamp`类型了。
 		- 修改后的`book.proto`文件内容如下：
-		  
-		  ```
-		  *// demo/proto/book/book.proto
-		  *
-		  syntax **=** "proto3";
-		  
-		  *// 声明protobuf中的包名
-		  *package book;
-		  
-		  *// 声明生成的Go代码的导入路径
-		  *option go_package **=** "github.com/Q1mi/demo/proto/book";
-		  
-		  *// 引入同目录下的protobuf文件（注意起始位置为proto_path的下层）
-		  *import "book/price.proto";
-		  *// 引入其他目录下的protobuf文件
-		  *import "author/author.proto";
-		  *// 引入google/protobuf/timestamp.proto文件
-		  *import "google/protobuf/timestamp.proto";
-		  
-		  message Book {
-		    string title **=** 1;
-		    Price price **=**2;
-		    author.Info authorInfo **=** 3;  *// 需要带package前缀
-		  *    *// Timestamp是大写T!大写T!大写T!
-		  *    google.protobuf.Timestamp date **=** 4;  *// 注意包名前缀
-		  *}
-		  ```
-		  
-		  那么这个 `google/protobuf/timestamp.proto` 是从哪里导入的呢？
-		  
-		  通常我们下载 [protobuf](https://github.com/google/protobuf/releases)编译器的时候会解压得到如下文件：
-		  
-		  ![protoc](https://www.liwenzhou.com/images/Go/grpc/protoc.png)
-		  
-		  其中：
+			- ```
+			  // demo/proto/book/book.proto
+			  
+			  syntax = "proto3";
+			  
+			  // 声明protobuf中的包名
+			  package book;
+			  
+			  // 声明生成的Go代码的导入路径
+			  option go_package = "github.com/Q1mi/demo/proto/book";
+			  
+			  // 引入同目录下的protobuf文件（注意起始位置为proto_path的下层）
+			  import "book/price.proto";
+			  // 引入其他目录下的protobuf文件
+			  import "author/author.proto";
+			  // 引入google/protobuf/timestamp.proto文件
+			  import "google/protobuf/timestamp.proto";
+			  
+			  message Book {
+			    string title = 1;
+			    Price price =2;
+			    author.Info authorInfo = 3;  // 需要带package前缀
+			      // Timestamp是大写T!大写T!大写T!
+			      google.protobuf.Timestamp date = 4;  // 注意包名前缀
+			  }
+			  ```
+			- 那么这个 `google/protobuf/timestamp.proto` 是从哪里导入的呢
+			- 通常我们下载 [protobuf](https://github.com/google/protobuf/releases)编译器的时候会解压得到如下文件：
+			  
+			  ![protoc](https://www.liwenzhou.com/images/Go/grpc/protoc.png)
+			  
+			  其中：
 	- bin 目录下的 protoc 是可执行文件。
 	- include 目录下的是 google 定义的`.proto`文件，我们`import "google/protobuf/timestamp.proto"`就是从此处导入。
 	  
