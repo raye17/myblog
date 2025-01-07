@@ -18,7 +18,6 @@ collapsed:: true
 			  需要将下载得到的可执行文件`protoc`所在的 bin 目录加到电脑的环境变量中。
 - # 生成go代码
 	- ## 编译器调用
-	  collapsed:: true
 		- protocol buffer编译器需要一个插件来根据提供的proto文件生成 Go 代码，使用下面的命令安装插件。
 			- ```
 			  go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
@@ -41,13 +40,13 @@ collapsed:: true
 		- 建议在 `.proto` 文件中声明它，以便 `.proto` 文件的 Go 包可以与 `.proto` 文件本身集中标识，并简化调用 `protoc` 时传递的标志集。 如果给定 `.proto` 文件的 Go 导入路径由 `.proto` 文件本身和命令行提供，则后者优先于前者。
 		- Go 导入路径是在 `.proto` 文件中指定的，通过声明带有 Go 包的完整导入路径的 `go_package` 选项来创建 proto 文件。用法示例：
 			- ```
-			  option go_package **=** "example.com/project/protos/fizz";
+			  option go_package = "example.com/project/protos/fizz";
 			  ```
 			- 调用编译器时，可以在命令行上指定 Go 导入路径，方法是传递一个或多个 `M${PROTO_FILE}=${GO_IMPORT_PATH}` 标志位。用法示例：
 				- ```
-				  protoc --proto_path**=**src \
-				  --go_opt**=**Mprotos/buzz.proto**=**example.com/project/protos/fizz \
-				  --go_opt**=**Mprotos/bar.proto**=**example.com/project/protos/foo \
+				  protoc --proto_path=src \
+				  --go_opt=Mprotos/buzz.proto=example.com/project/protos/fizz \
+				  --go_opt=Mprotos/bar.proto=example.com/project/protos/foo \
 				  protos/buzz.proto protos/bar.proto
 				  ```
 			- 由于所有 `.proto` 文件到其 Go 导入路径的映射可能非常大，这种指定 Go 导入路径的模式通常由控制整个依赖树的某些构建工具（例如 Bazel）执行。 如果给定的 `.proto` 文件有重复条目，则指定的最后一个条目优先。
@@ -89,12 +88,12 @@ collapsed:: true
 					        └── price.proto
 					  ```
 			- ### 生成代码
-				- 假设我们想把最终生成的Go代码还保存在`proto`文件夹中，那么就可以执行下面的命令。
-				- ```
-				  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/price.proto
-				  ```
-				  
-				  其中：
+				- 假设想把最终生成的Go代码还保存在`proto`文件夹中，那么就可以执行下面的命令。
+					- ```
+					  protoc --proto_path=proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/price.proto
+					  ```
+					  
+					  其中：
 	- `--proto_path=proto` 表示从proto目录下读取proto文件。
 	- `--go_out=proto` 表示生成的Go代码保存的路径。
 	- `--go_opt=paths=source_relative` 表示输出文件与输入文件放在相同的相对目录中。
