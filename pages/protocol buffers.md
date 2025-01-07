@@ -37,16 +37,12 @@ collapsed:: true
 	- ## package
 		- 为了生成 Go 代码，必须为每个 `.proto` 文件（包括那些被生成的 `.proto` 文件传递依赖的文件）提供 Go 包的导入路径。有两种方法可以指定 Go 导入路径：
 			- 通过在 `.proto` 文件中声明它。
-	- 通过在调用 `protoc` 时在命令行上声明它。
-	  
-	  我们建议在 `.proto` 文件中声明它，以便 `.proto` 文件的 Go 包可以与 `.proto` 文件本身集中标识，并简化调用 `protoc` 时传递的标志集。 如果给定 `.proto` 文件的 Go 导入路径由 `.proto` 文件本身和命令行提供，则后者优先于前者。
-	  
-	  Go 导入路径是在 `.proto` 文件中指定的，通过声明带有 Go 包的完整导入路径的 `go_package` 选项来创建 proto 文件。用法示例：
-	  
-	  ```
+			- 通过在调用 `protoc` 时在命令行上声明它。
+		- 建议在 `.proto` 文件中声明它，以便 `.proto` 文件的 Go 包可以与 `.proto` 文件本身集中标识，并简化调用 `protoc` 时传递的标志集。 如果给定 `.proto` 文件的 Go 导入路径由 `.proto` 文件本身和命令行提供，则后者优先于前者。
+		- Go 导入路径是在 `.proto` 文件中指定的，通过声明带有 Go 包的完整导入路径的 `go_package` 选项来创建 proto 文件。用法示例：
+	- ```
 	  option go_package **=** "example.com/project/protos/fizz";
 	  ```
-	  
 	  调用编译器时，可以在命令行上指定 Go 导入路径，方法是传递一个或多个 `M${PROTO_FILE}=${GO_IMPORT_PATH}` 标志位。用法示例：
 	  
 	  ```
