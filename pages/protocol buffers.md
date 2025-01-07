@@ -307,6 +307,7 @@ collapsed:: true
 			  protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
 			  ```
 	- ## 生成gRPC代码
+	  collapsed:: true
 		- 由于通常都是配合 gRPC 来使用 protobuf ，所以也需要基于`.proto`文件生成Go代码的同时生成 gRPC 代码。
 			- 要想生成 gRPC 代码就需要先安装 `protoc-gen-go-grpc` 插件。
 				- ```
@@ -325,30 +326,29 @@ collapsed:: true
 				  ```
 			- 然后在 protoc 的编译命令添加 gRPC相关输出的参数，完整命令如下。
 				- ```
-				  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative --go-grpc_out**=**proto --go-grpc_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
+				  protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative --go-grpc_out=proto --go-grpc_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
 				  ```
 			- 上述命令就会生成`book_grpc.pb.go`文件。
-			- ```
-			  demo
-			  └── proto
-			  ├── author
-			  │   ├── author.pb.go
-			  │   └── author.proto
-			  └── book
-			      ├── book.pb.go
-			      ├── book.proto
-			      ├── book_grpc.pb.go
-			      ├── price.pb.go
-			      └── price.proto
-			  ```
-	- ### gRPC-Gateway
-	  
-	  [gRPC-Gateway](https://github.com/grpc-ecosystem/grpc-gateway) 也是日常开发中比较常用的一个工具，它同样也是根据 protobuf 生成相应的代码。
-	- ### 安装工具
-	  
-	  ```
-	  go get github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
-	  ```
+				- ```
+				  demo
+				  └── proto
+				  ├── author
+				  │   ├── author.pb.go
+				  │   └── author.proto
+				  └── book
+				      ├── book.pb.go
+				      ├── book.proto
+				      ├── book_grpc.pb.go
+				      ├── price.pb.go
+				      └── price.proto
+				  ```
+	- ## gRPC-Gateway
+		- [gRPC-Gateway](https://github.com/grpc-ecosystem/grpc-gateway) 也是日常开发中比较常用的一个工具，它同样也是根据 protobuf 生成相应的代码。
+		- ### 安装工具
+		  
+		  ```
+		  go get github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
+		  ```
 	- ### 为protobuf文件添加注释
 	  
 	  我们在`book.proto`文件中添加如下注释。
