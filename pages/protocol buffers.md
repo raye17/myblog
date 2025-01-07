@@ -134,38 +134,34 @@ collapsed:: true
 					      └── price.proto
 					  ```
 	- ### import同目录下protobuf文件
-	  
-	  随着业务的复杂度上升，我们可能会定义多个`.proto`源文件，然后根据需要引入其他的protobuf文件。
-	  
-	  在这个示例中，我们在`demo/proto/book`目录下新建一个`book.proto`文件，它通过`import "book/price.proto";`语句引用了同目录下的`price.proto`文件。
-	  
-	  ```
-	  *// demo/proto/book/book.proto
-	  *
-	  syntax **=** "proto3";
-	  
-	  *// 声明protobuf中的包名
-	  *package book;
-	  
-	  *// 声明生成的Go代码的导入路径
-	  *option go_package **=** "github.com/Q1mi/demo/proto/book";
-	  
-	  *// 引入同目录下的protobuf文件（注意起始位置为proto_path的下层）
-	  *import "book/price.proto";
-	  
-	  message Book {
-	    string title **=** 1;
-	    Price price **=** 2;
-	  }
-	  ```
-	  
-	  编译命令如下：
-	  
-	  ```
-	  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto
-	  ```
-	  
-	  这里有几点需要注意：
+		- 随着业务的复杂度上升，可能会定义多个`.proto`源文件，然后根据需要引入其他的protobuf文件。
+		- 在这个示例中，在`demo/proto/book`目录下新建一个`book.proto`文件，它通过`import "book/price.proto";`语句引用了同目录下的`price.proto`文件。
+		- ```
+		  *// demo/proto/book/book.proto
+		  *
+		  syntax **=** "proto3";
+		  
+		  *// 声明protobuf中的包名
+		  *package book;
+		  
+		  *// 声明生成的Go代码的导入路径
+		  *option go_package **=** "github.com/Q1mi/demo/proto/book";
+		  
+		  *// 引入同目录下的protobuf文件（注意起始位置为proto_path的下层）
+		  *import "book/price.proto";
+		  
+		  message Book {
+		    string title **=** 1;
+		    Price price **=** 2;
+		  }
+		  ```
+		  
+		  编译命令如下：
+		  
+		  ```
+		  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto
+		  ```
+	- 这里有几点需要注意：
 	- 因为我们通过编译命令指定`--proto_path=proto`，所以import导入语句需要从`demo/proto`文件夹的下层目录`book`这一层开始写。
 	- 因为导入的`price.proto`与`book.proto`同属于一个`package book;`，所以可以直接使用`price`作为类型，无需添加 package 前缀（即无需写成`book.price`）。
 	  
