@@ -6,3 +6,7 @@
 	  logseq.order-list-type:: number
 	- gorm支持自定义类型
 	  logseq.order-list-type:: number
+-
+-
+- ## trace链路追踪
+- [[链路追踪]]
