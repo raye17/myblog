@@ -59,36 +59,34 @@ collapsed:: true
 		- 新建一个名为`demo`的项目，并且将项目中定义的`.proto`文件都保存在`proto`目录下。后续的操作命令默认都在`demo`目录下执行。
 		- ## 普通编译
 			- 定义一个单独的`proto`文件并进行编译。
-	- #### 定义proto
-	  
-	  新建一个`price.proto`文件。
-	  
-	  ```
-	  *// proto/book/price.proto
-	  *
-	  syntax **=** "proto3";
-	  
-	  package book;
-	  
-	  *// 声明生成Go代码的导入路径（import path）
-	  *option go_package **=** "github.com/Q1mi/demo/proto/book";
-	  
-	  message Price {
-	    int64 market_price **=** 1;  *// 建议使用下划线的命名方式
-	  *    int64 sale_price **=** 2;
-	  }
-	  ```
-	  
-	  我们在这个文件中使用`option go_package = "github.com/Q1mi/demo/proto/book"`语句声明了生成的Go代码的导入路径。
-	  
-	  项目当前的目录结构如下：
-	  
-	  ```
-	  demo
-	  └── proto
-	    └── book
-	        └── price.proto
-	  ```
+			- ### 定义proto
+				- 新建一个`price.proto`文件。
+					- ```
+					  *// proto/book/price.proto
+					  *
+					  syntax **=** "proto3";
+					  
+					  package book;
+					  
+					  *// 声明生成Go代码的导入路径（import path）
+					  *option go_package **=** "github.com//demo/proto/book";
+					  
+					  message Price {
+					    int64 market_price **=** 1;  *// 建议使用下划线的命名方式
+					  *    int64 sale_price **=** 2;
+					  }
+					  ```
+					  
+					  在这个文件中使用`option go_package = "github.com/raye17/demo/proto/book"`语句声明了生成的Go代码的导入路径。
+					  
+					  项目当前的目录结构如下：
+					  
+					  ```
+					  demo
+					  └── proto
+					    └── book
+					        └── price.proto
+					  ```
 	- #### 生成代码
 	  
 	  假设我们想把最终生成的Go代码还保存在`proto`文件夹中，那么就可以执行下面的命令。
