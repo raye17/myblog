@@ -245,6 +245,7 @@ collapsed:: true
 				      └── price.proto
 				  ```
 	- ## import google proto文件
+	  collapsed:: true
 		- 有时候也需要在定义的 protobuf 文件中使用 Google 定义的类型，例如`Timestamp`、`Any`等。
 		- 例如我们要为book 添加出版日期——`date`字段，就可以通过 `import "google/protobuf/timestamp.proto";`导入并使用`Timestamp`类型了。
 		- 修改后的`book.proto`文件内容如下：
@@ -303,53 +304,51 @@ collapsed:: true
 				  ```
 		- 然后执行下面的编译命令：
 			- ```
-			  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
+			  protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
 			  ```
 	- ## 生成gRPC代码
-	  
-	  由于通常我们都是配合 gRPC 来使用 protobuf ，所以我们也需要基于`.proto`文件生成Go代码的同时生成 gRPC 代码。
-	  
-	  要想生成 gRPC 代码就需要先安装 `protoc-gen-go-grpc` 插件。
-	  
-	  ```
-	  go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-	  ```
-	  
-	  上述命令会默认将插件安装到`$GOPATH/bin`，为了`protoc`编译器能找到这些插件，请确保你的`$GOPATH/bin`在环境变量中。
-	  
-	  假设我们现在要提供一个创建书籍的 RPC 方法，那么我在`book.proto`中添加如下定义。
-	  
-	  ```
-	  *// demo/proto/book/book.proto
-	  *
-	  *// ...省略...
-	  *
-	  service BookService{
-	    rpc Create(Book)returns(Book);
-	  }
-	  ```
-	  
-	  然后在 protoc 的编译命令添加 gRPC相关输出的参数，完整命令如下。
-	  
-	  ```
-	  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative --go-grpc_out**=**proto --go-grpc_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
-	  ```
-	  
-	  上述命令就会生成`book_grpc.pb.go`文件。
-	  
-	  ```
-	  demo
-	  └── proto
-	    ├── author
-	    │   ├── author.pb.go
-	    │   └── author.proto
-	    └── book
-	        ├── book.pb.go
-	        ├── book.proto
-	        ├── book_grpc.pb.go
-	        ├── price.pb.go
-	        └── price.proto
-	  ```
+		- 由于通常都是配合 gRPC 来使用 protobuf ，所以也需要基于`.proto`文件生成Go代码的同时生成 gRPC 代码。
+			- 要想生成 gRPC 代码就需要先安装 `protoc-gen-go-grpc` 插件。
+				- ```
+				  go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+				  ```
+				  
+				  
+				  上述命令会默认将插件安装到`$GOPATH/bin`，为了`protoc`编译器能找到这些插件，请确保你的`$GOPATH/bin`在环境变量中。
+				  
+				  假设我们现在要提供一个创建书籍的 RPC 方法，那么我在`book.proto`中添加如下定义。
+				  
+				  ```
+				  *// demo/proto/book/book.proto
+				  *
+				  *// ...省略...
+				  *
+				  service BookService{
+				    rpc Create(Book)returns(Book);
+				  }
+				  ```
+				  
+				  然后在 protoc 的编译命令添加 gRPC相关输出的参数，完整命令如下。
+				  
+				  ```
+				  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative --go-grpc_out**=**proto --go-grpc_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
+				  ```
+				  
+				  上述命令就会生成`book_grpc.pb.go`文件。
+				  
+				  ```
+				  demo
+				  └── proto
+				    ├── author
+				    │   ├── author.pb.go
+				    │   └── author.proto
+				    └── book
+				        ├── book.pb.go
+				        ├── book.proto
+				        ├── book_grpc.pb.go
+				        ├── price.pb.go
+				        └── price.proto
+				  ```
 	- ### gRPC-Gateway
 	  
 	  [gRPC-Gateway](https://github.com/grpc-ecosystem/grpc-gateway) 也是日常开发中比较常用的一个工具，它同样也是根据 protobuf 生成相应的代码。
