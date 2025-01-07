@@ -285,27 +285,24 @@ collapsed:: true
 			  ```
 			  protoc --proto_path=/Users/liwenzhou/workspace/go/pkg/mod/github.com/protocolbuffers/protobuf@v3.21.2+incompatible/src/ --proto_path=proto --go_out=proto --go_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
 			  ```
-			  
-			  
-			  ```
-			  demo
-			  └── proto
-			    ├── author
-			    │   ├── author.pb.go
-			    │   └── author.proto
-			    ├── book
-			    │   ├── book.pb.go
-			    │   ├── book.proto
-			    │   ├── price.pb.go
-			    │   └── price.proto
-			    └── google
-			        └── protobuf
-			            └── timestamp.proto
-			  ```
-			  
-			  然后执行下面的编译命令：
-			  
-			  ```
+			- 或者可以简单粗暴的把下载好的 protobuf 文件拷贝到项目的 proto 目录下。
+				- ```
+				  demo
+				  └── proto
+				  ├── author
+				  │   ├── author.pb.go
+				  │   └── author.proto
+				  ├── book
+				  │   ├── book.pb.go
+				  │   ├── book.proto
+				  │   ├── price.pb.go
+				  │   └── price.proto
+				  └── google
+				      └── protobuf
+				          └── timestamp.proto
+				  ```
+		- 然后执行下面的编译命令：
+			- ```
 			  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
 			  ```
 	- ## 生成gRPC代码
