@@ -18,17 +18,15 @@ collapsed:: true
 			  需要将下载得到的可执行文件`protoc`所在的 bin 目录加到电脑的环境变量中。
 - # 生成go代码
 	- ## 编译器调用
-	  protocol buffer编译器需要一个插件来根据提供的proto文件生成 Go 代码，Go1.16+请使用下面的命令安装插件。
-	  
-	  ```
-	  go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-	  ```
-	  
-	  这个命令将在 `$GOBIN` 中安装一个 `protocol-gen-go` 的二进制文件。我们需要确保 `$GOBIN` 在你的环境变量中，protocol buffer编译器才能找到它（可以通过`go env`命令查看`$GOPATH`）。
-	  
-	  当使用`go_out` 标志调用 protoc 时，protocol buffer编译器将生成 Go 代码。protocol buffer编译器会将生成的Go代码输出到命令行参数`go_out`指定的位置。`go_out`标志的参数是你希望编译器编写 Go 输出的目录。编译器为每个`.proto` 文件输入创建一个源文件。输出文件的名称是通过将`.proto` 扩展名替换为`.pb.go` 而创建的。
-	  
-	  生成的`.pb.go`文件放置的目录取决于编译器标志。有以下几种输出模式:
+		- protocol buffer编译器需要一个插件来根据提供的proto文件生成 Go 代码，使用下面的命令安装插件。
+			- ```
+			  go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+			  ```
+		- 这个命令将在 `$GOBIN` 中安装一个 `protocol-gen-go` 的二进制文件。我们需要确保 `$GOBIN` 在你的环境变量中，protocol buffer编译器才能找到它（可以通过`go env`命令查看`$GOPATH`）。
+		  
+		  当使用`go_out` 标志调用 protoc 时，protocol buffer编译器将生成 Go 代码。protocol buffer编译器会将生成的Go代码输出到命令行参数`go_out`指定的位置。`go_out`标志的参数是你希望编译器编写 Go 输出的目录。编译器为每个`.proto` 文件输入创建一个源文件。输出文件的名称是通过将`.proto` 扩展名替换为`.pb.go` 而创建的。
+		  
+		  生成的`.pb.go`文件放置的目录取决于编译器标志。有以下几种输出模式:
 	- `paths=import`：输出文件放在以 Go 包的导入路径命名的目录中。例如，`protos/buzz.proto`文件中带有`example.com/project/protos/fizz`的导入路径，则输出的生成文件会保存在`example.com/project/protos/fizz/buzz.pb.go`。如果未指定路径标志，这就是默认输出模式。
 	- `module=$PREFIX`：输出文件放在以 Go 包的导入路径命名的目录中，但是从输出文件名中删除了指定的目录前缀。例如，输入文件 `pros/buzz.proto`，其导入路径为 `example.com/project/protos/fizz` 并指定`example.com/project`为`module`前缀，结果会产生一个名为 `pros/fizz/buzz.pb.go` 的输出文件。在module路径之外生成任何 Go 包都会导致错误。此模式对于将生成的文件直接输出到 Go 模块非常有用。
 	- `paths=source_relative`：输出文件与输入文件放在相同的相对目录中。例如，一个`protos/buzz.proto`输入文件会产生一个位于`protos/buzz.pb.go`的输出文件。
