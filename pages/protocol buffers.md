@@ -345,77 +345,76 @@ collapsed:: true
 	- ## gRPC-Gateway
 		- [gRPC-Gateway](https://github.com/grpc-ecosystem/grpc-gateway) 也是日常开发中比较常用的一个工具，它同样也是根据 protobuf 生成相应的代码。
 		- ### 安装工具
-		  
-		  ```
-		  go get github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
-		  ```
-	- ### 为protobuf文件添加注释
-	  
-	  我们在`book.proto`文件中添加如下注释。
-	  
-	  ```
-	  *// demo/proto/book/book.proto
-	  *
-	  syntax **=** "proto3";
-	  
-	  *// 声明protobuf中的包名
-	  *package book;
-	  
-	  *// 声明生成的Go代码的导入路径
-	  *option go_package **=** "github.com/Q1mi/demo/proto/book";
-	  
-	  *// 引入同目录下的protobuf文件（注意起始位置为proto_path的下层）
-	  *import "book/price.proto";
-	  *// 引入其他目录下的protobuf文件
-	  *import "author/author.proto";
-	  *// 引入google/protobuf/timestamp.proto文件
-	  *import "google/protobuf/timestamp.proto";
-	  *// 引入google/api/annotations.proto文件
-	  *import "google/api/annotations.proto";
-	  
-	  message Book {
-	    string title **=** 1;
-	    Price price **=** 2;
-	    author.Info authorInfo **=** 3;  *// 需要带package前缀
-	  *    *// Timestamp是大写T!大写T!大写T!
-	  *    google.protobuf.Timestamp date **=** 4;  *// 注意包名前缀
-	  *}
-	  
-	  service BookService{
-	    rpc Create(Book)returns(Book){
-	        option (google.api.http) **=** {
-	            post**:** "/v1/book"
-	            body**:** "*"
-	        };
-	    };
-	  }
-	  ```
-	  
-	  此时，我们又引入了`google/api/annotations.proto` ，这个文件是由googleapi定义在[https://github.com/googleapis/googleapis](https://github.com/googleapis/googleapis)。
-	  
-	  想要在项目中引入上述protobuf源文件可以像上面引入`timestamp.proto`文件一样将这个库下载到本地然后通过`--proto_path`指定，或者直接把用到的 protobuf 源文件拷贝到我们的项目中。
-	  
-	  本示例就采用第二种方法把此处用到的`google/api/annotations.proto`文件和`http.proto`文件拷贝到项目的`google/api`目录下（`annotations.proto`文件中引入了`http.proto`文件）。
-	  
-	  此时的项目目录如下：
-	  
-	  ```
-	  demo
-	  └── proto
-	    ├── author
-	    │   ├── author.pb.go
-	    │   └── author.proto
-	    ├── book
-	    │   ├── book.pb.go
-	    │   ├── book.proto
-	    │   ├── book_grpc.pb.go
-	    │   ├── price.pb.go
-	    │   └── price.proto
-	    └── google
-	        └── api
-	            ├── annotations.proto
-	            └── http.proto
-	  ```
+			- ```
+			  go get github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
+			  ```
+		- ### 为protobuf文件添加注释
+			- 在`book.proto`文件中添加如下注释。
+			  
+			  ```
+			  // demo/proto/book/book.proto
+			  
+			  syntax = "proto3";
+			  
+			  // 声明protobuf中的包名
+			  package book;
+			  
+			  // 声明生成的Go代码的导入路径
+			  option go_package = "github.com/raye17/demo/proto/book";
+			  
+			  // 引入同目录下的protobuf文件（注意起始位置为proto_path的下层）
+			  import "book/price.proto";
+			  // 引入其他目录下的protobuf文件
+			  import "author/author.proto";
+			  // 引入google/protobuf/timestamp.proto文件
+			  import "google/protobuf/timestamp.proto";
+			  // 引入google/api/annotations.proto文件
+			  import "google/api/annotations.proto";
+			  
+			  message Book {
+			      string title = 1;
+			      Price price = 2;
+			      author.Info authorInfo = 3;  // 需要带package前缀
+			      // Timestamp是大写T!大写T!大写T!
+			      google.protobuf.Timestamp date = 4;  // 注意包名前缀
+			  }
+			  
+			  service BookService{
+			      rpc Create(Book)returns(Book){
+			          option (google.api.http) = {
+			              post: "/v1/book"
+			              body: "*"
+			          };
+			      };
+			  }
+			  
+			  ```
+			  
+			  此时，我们又引入了`google/api/annotations.proto` ，这个文件是由googleapi定义在[https://github.com/googleapis/googleapis](https://github.com/googleapis/googleapis)。
+			  
+			  想要在项目中引入上述protobuf源文件可以像上面引入`timestamp.proto`文件一样将这个库下载到本地然后通过`--proto_path`指定，或者直接把用到的 protobuf 源文件拷贝到我们的项目中。
+			  
+			  本示例就采用第二种方法把此处用到的`google/api/annotations.proto`文件和`http.proto`文件拷贝到项目的`google/api`目录下（`annotations.proto`文件中引入了`http.proto`文件）。
+			  
+			  此时的项目目录如下：
+			  
+			  ```
+			  demo
+			  └── proto
+			    ├── author
+			    │   ├── author.pb.go
+			    │   └── author.proto
+			    ├── book
+			    │   ├── book.pb.go
+			    │   ├── book.proto
+			    │   ├── book_grpc.pb.go
+			    │   ├── price.pb.go
+			    │   └── price.proto
+			    └── google
+			        └── api
+			            ├── annotations.proto
+			            └── http.proto
+			  ```
 	- ### 编译
 	  
 	  这一次编译命令在之前的基础上要继续加上 gRPC-Gateway相关的 `--grpc-gateway_out=proto --grpc-gateway_opt=paths=source_relative` 参数。
