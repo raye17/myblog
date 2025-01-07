@@ -312,43 +312,35 @@ collapsed:: true
 				- ```
 				  go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 				  ```
+			- 上述命令会默认将插件安装到`$GOPATH/bin`，为了`protoc`编译器能找到这些插件，请确保`$GOPATH/bin`在环境变量中。
+			- 假设现在要提供一个创建书籍的 RPC 方法，那么我在`book.proto`中添加如下定义。
+				- ```
+				  // demo/proto/book/book.proto
 				  
+				  // ...省略...
 				  
-				  上述命令会默认将插件安装到`$GOPATH/bin`，为了`protoc`编译器能找到这些插件，请确保你的`$GOPATH/bin`在环境变量中。
-				  
-				  假设我们现在要提供一个创建书籍的 RPC 方法，那么我在`book.proto`中添加如下定义。
-				  
-				  ```
-				  *// demo/proto/book/book.proto
-				  *
-				  *// ...省略...
-				  *
 				  service BookService{
 				    rpc Create(Book)returns(Book);
 				  }
 				  ```
-				  
-				  然后在 protoc 的编译命令添加 gRPC相关输出的参数，完整命令如下。
-				  
-				  ```
+			- 然后在 protoc 的编译命令添加 gRPC相关输出的参数，完整命令如下。
+				- ```
 				  protoc --proto_path**=**proto --go_out**=**proto --go_opt**=**paths**=**source_relative --go-grpc_out**=**proto --go-grpc_opt**=**paths**=**source_relative book/book.proto book/price.proto author/author.proto
 				  ```
-				  
-				  上述命令就会生成`book_grpc.pb.go`文件。
-				  
-				  ```
-				  demo
-				  └── proto
-				    ├── author
-				    │   ├── author.pb.go
-				    │   └── author.proto
-				    └── book
-				        ├── book.pb.go
-				        ├── book.proto
-				        ├── book_grpc.pb.go
-				        ├── price.pb.go
-				        └── price.proto
-				  ```
+			- 上述命令就会生成`book_grpc.pb.go`文件。
+			- ```
+			  demo
+			  └── proto
+			  ├── author
+			  │   ├── author.pb.go
+			  │   └── author.proto
+			  └── book
+			      ├── book.pb.go
+			      ├── book.proto
+			      ├── book_grpc.pb.go
+			      ├── price.pb.go
+			      └── price.proto
+			  ```
 	- ### gRPC-Gateway
 	  
 	  [gRPC-Gateway](https://github.com/grpc-ecosystem/grpc-gateway) 也是日常开发中比较常用的一个工具，它同样也是根据 protobuf 生成相应的代码。
