@@ -35,7 +35,6 @@ collapsed:: true
 			  ```
 		- 编译器将从 `src` 目录中读取输入文件 `foo.proto` 和 `bar/baz.proto`，并将输出文件 `foo.pb.go` 和 `bar/baz.pb.go` 写入 `out` 目录。如果需要，编译器会自动创建嵌套的输出子目录，但不会创建输出目录本身。
 	- ## package
-	  collapsed:: true
 		- 为了生成 Go 代码，必须为每个 `.proto` 文件（包括那些被生成的 `.proto` 文件传递依赖的文件）提供 Go 包的导入路径。有两种方法可以指定 Go 导入路径：
 			- 通过在 `.proto` 文件中声明它。
 			- 通过在调用 `protoc` 时在命令行上声明它。
@@ -56,6 +55,8 @@ collapsed:: true
 			- 导入路径用于确定一个 `.proto` 文件导入另一个 `.proto` 文件时必须生成哪些导入语句。 例如，如果 `a.proto `导入 `b.proto`，则生成的 `a.pb.go` 文件需要导入包含生成的 `b.pb.go` 文件的 Go 包（除非两个文件在同一个包中）。 导入路径也用于构造输出文件名。 有关详细信息，请参阅上面的“编译器调用”部分。
 			- Go 导入路径和 `.proto` 文件中的`package`说明符之间没有关联。 后者仅与 protobuf 命名空间相关，而前者仅与 Go 命名空间相关。 此外，Go 导入路径和 `.proto` 导入路径之间没有关联。
 		-
+	-
+	-
 	- ### 普通编译
 	  
 	  下面的示例中我们将定义一个单独的`proto`文件并进行编译。
@@ -526,8 +527,6 @@ collapsed:: true
 	  在企业的项目开发中，我们通常会把 protobuf 文件存储到一个单独的代码库中，并在具体项目中通过`git submodule`引入。这样做的好处是能够将 protobuf 文件统一管理和维护，避免因 protobuf 文件改动导致的问题。
 	  
 	  本文示例代码已上传至github仓库：[https://github.com/Q1mi/demo](https://github.com/Q1mi/demo)，请点击查看完整代码。
-- # Go语言使用protoc示例
-	- 我们新建一个名为`demo`的项目，并且将项目中定义的`.proto`文件都保存在`proto`目录下。本文后续的操作命令默认都在`demo`目录下执行。
 - ## 标量值类型
 	- 标量消息字段可以具有以下类型之一，表格为`.proto`文件中指定的类型以及自动生成的类中的对应类型
 	- TODO logseq不支持表格，插入链接 [protobuf语法](https://protobuf.com.cn/programming-guides/proto3/)
