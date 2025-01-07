@@ -21,7 +21,7 @@ collapsed:: true
 			- ```
 			  go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 			  ```
-		- 这个命令将在 `$GOBIN` 中安装一个 `protocol-gen-go` 的二进制文件。需要确保 `$GOBIN` 在你的环境变量中，protocol buffer编译器才能找到它（可以通过`go env`命令查看`$GOPATH`）。
+		- 这个命令将在 `GOPATH` 中安装一个 `protocol-gen-go` 的二进制文件。需要确保 `GOPATH` 在你的环境变量中，protocol buffer编译器才能找到它（可以通过`go env`命令查看`$GOPATH`）。
 		- 当使用`go_out` 标志调用 protoc 时，protocol buffer编译器将生成 Go 代码。protocol buffer编译器会将生成的Go代码输出到命令行参数`go_out`指定的位置。`go_out`标志的参数是希望编译器编写 Go 输出的目录。编译器为每个`.proto` 文件输入创建一个源文件。输出文件的名称是通过将`.proto` 扩展名替换为`.pb.go` 而创建的。
 		- 生成的`.pb.go`文件放置的目录取决于编译器标志。有以下几种输出模式:
 			- `paths=import`：输出文件放在以 Go 包的导入路径命名的目录中。例如，`protos/buzz.proto`文件中带有`example.com/project/protos/fizz`的导入路径，则输出的生成文件会保存在`example.com/project/protos/fizz/buzz.pb.go`。如果未指定路径标志，这就是默认输出模式。
