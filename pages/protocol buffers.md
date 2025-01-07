@@ -202,26 +202,25 @@ collapsed:: true
 				        ├── price.pb.go
 				        └── price.proto
 				  ```
-				  假设我们的 book 需要增加一个作者信息的字段——`authorInfo`，这时我们需要在`demo/proto/book/book.proto`中导入其他目录下的 `author.proto` 文件。具体改动如下。
+			- 假设 book 需要增加一个作者信息的字段——`authorInfo`，这时需要在`demo/proto/book/book.proto`中导入其他目录下的 `author.proto` 文件。具体改动如下。
+				- ```
+				  // proto/proto/book/book.proto
 				  
-				  ```
-				  *// proto/proto/book/book.proto
-				  *
-				  syntax **=** "proto3";
+				  syntax = "proto3";
 				  
-				  *// 声明protobuf中的包名
-				  *package book;
+				  // 声明protobuf中的包名
+				  package book;
 				  
-				  *// 声明生成的Go代码的导入路径
-				  *option go_package **=** "github.com/Q1mi/demo/proto/book";
+				  // 声明生成的Go代码的导入路径
+				  option go_package = "github.com/Q1mi/demo/proto/book";
 				  
-				  *// 引入同目录下的protobuf文件（注意起始位置为proto_path的下层）
-				  *import "book/price.proto";
-				  *// 引入其他目录下的protobuf文件
-				  *import "author/author.proto";
+				  // 引入同目录下的protobuf文件（注意起始位置为proto_path的下层）
+				  import "book/price.proto";
+				  // 引入其他目录下的protobuf文件
+				  import "author/author.proto";
 				  
 				  message Book {
-				    string title **=** 1;
+				    string title **= 1;
 				    Price price **=** 2;
 				    author.Info authorInfo **=** 3;  *// 需要带package前缀
 				  *}
