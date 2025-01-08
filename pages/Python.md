@@ -1,4 +1,11 @@
 # 安装
 	- 安装包地址
 		- 官网[Welcome to Python.org](https://www.python.org/)
+		- [国内地址](https://repo.huaweicloud.com/artifactory/python-local/3.13.1/)
+	- 下载
+		- 根据系统选择对应的版本
+	- 安装
+		- 选择自定义安装：
+		- ![image.png](../assets/image_1736307815084_0.png)
+		- ![image.png](../assets/image_1736307910683_0.png)
 		-
