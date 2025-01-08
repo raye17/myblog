@@ -5,7 +5,13 @@
 	- 下载
 		- 根据系统选择对应的版本
 	- 安装
+	  collapsed:: true
 		- 选择自定义安装：
 		- ![image.png](../assets/image_1736307815084_0.png)
+		- 自定义安装位置
 		- ![image.png](../assets/image_1736307910683_0.png)
-		-
+	- 检查
+		- `win+r`进入终端输入`py`或者`python`
+		- 安装成功 ![image.png](../assets/image_1736308040748_0.png)
+		- 查看pip是否安装成功
+		- ![image.png](../assets/image_1736308099542_0.png)
