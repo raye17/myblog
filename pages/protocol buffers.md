@@ -20,10 +20,8 @@
 			- include 目录下的是 google 定义的`.proto`文件，`import "google/protobuf/timestamp.proto"`就是从此处导入。
 			  需要将下载得到的可执行文件`protoc`所在的 bin 目录加到电脑的环境变量中。
 - # 生成go代码
-  collapsed:: true
 	- ## 编译器调用
 	  id:: 677cbdf5-ca4a-422b-908e-b6d760fc3a08
-	  collapsed:: true
 		- protocol buffer编译器需要一个插件来根据提供的proto文件生成 Go 代码，使用下面的命令安装插件。
 			- ```
 			  go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
@@ -42,7 +40,6 @@
 			  ```
 		-
 	- ## package
-	  collapsed:: true
 		- 为了生成 Go 代码，必须为每个 `.proto` 文件（包括那些被生成的 `.proto` 文件传递依赖的文件）提供 Go 包的导入路径。有两种方法可以指定 Go 导入路径：
 			- 通过在 `.proto` 文件中声明它。
 			- 通过在调用 `protoc` 时在命令行上声明它。
@@ -64,12 +61,10 @@
 		- Go 导入路径和 `.proto` 文件中的`package`说明符之间没有关联。 后者仅与 protobuf 命名空间相关，而前者仅与 Go 命名空间相关。 此外，Go 导入路径和 `.proto` 导入路径之间没有关联。
 		-
 - # Go语言使用protoc示例
-  collapsed:: true
 	- 新建一个名为`demo`的项目，并且将项目中定义的`.proto`文件都保存在`proto`目录下。后续的操作命令默认都在`demo`目录下执行。
 	- ## 普通编译
 		- 定义一个单独的`proto`文件并进行编译。
 		- ### 定义proto
-		  collapsed:: true
 			- 新建一个`price.proto`文件。
 				- ```
 				  // proto/book/price.proto
@@ -112,13 +107,12 @@
 				  protoc -I=proto --go_out=proto --go_opt=paths=source_relative book/price.proto
 				  ```
 			- 执行上述命令将会在`proto`目录下生成`book/price.pb.go`文件。
-			  collapsed:: true
 				- ```
 				  demo
 				  └── proto
-				  └── book
-				      ├── price.pb.go
-				      └── price.proto
+				  	└── book
+				      	├── price.pb.go
+				      	└── price.proto
 				  ```
 			- 此处如果不指定`--proto_path`参数那么编译命令可以简写为:
 			  collapsed:: true
@@ -126,12 +120,10 @@
 				  protoc --go_out=. --go_opt=paths=source_relative proto/book/price.proto
 				  ```
 			- 上面的命令都是将代码生成到`demo/proto`目录，如果想要将生成的Go代码保存在其他文件夹中（例如`pb`文件夹），那么需要先在`demo`目录下创建一个`pb`文件夹。然后在命令行通过`--go_out=pb`指定生成的Go代码保存的路径。完整命令如下：
-			  collapsed:: true
 				- ```
 				  protoc --proto_path=proto --go_out=pb --go_opt=paths=source_relative book/price.proto
 				  ```
 			- 执行上面的命令便会在`demo/pb`文件夹下生成Go代码。
-			  collapsed:: true
 				- ```
 				  demo
 				  ├── pb
@@ -143,7 +135,6 @@
 				      └── price.proto
 				  ```
 	- ## import同目录下protobuf文件
-	  collapsed:: true
 		- 随着业务的复杂度上升，可能会定义多个`.proto`源文件，然后根据需要引入其他的protobuf文件。
 		- 在这个示例中，在`demo/proto/book`目录下新建一个`book.proto`文件，它通过`import "book/price.proto";`语句引用了同目录下的`price.proto`文件。
 		- ```
@@ -183,7 +174,6 @@
 			        └── price.proto
 			  ```
 	- ## import其他目录下文件
-	  collapsed:: true
 		- 在`demo/proto`目录下新建了一个`author`文件夹，用来存放与 author 相关的 protobuf 文件。例如定义一个表示作者信息的`author.proto`文件，其内容如下：
 			- ```
 			  // demo/proto/author/author.proto
@@ -316,22 +306,19 @@
 			  protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
 			  ```
 - # 生成gRPC代码
-  collapsed:: true
 	- ## gRPC-Gateway
 		- [gRPC-Gateway](https://github.com/grpc-ecosystem/grpc-gateway) 也是日常开发中比较常用的一个工具，它同样也是根据 protobuf 生成相应的代码。
 		- ### 安装工具
-		  collapsed:: true
 			- ```
 			  go get github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
 			  ```
 		- ### 为protobuf文件添加注释
-		  collapsed:: true
 			- 由于通常都是配合 gRPC 来使用 protobuf ，所以也需要基于`.proto`文件生成Go代码的同时生成 gRPC 代码。
 				- 要想生成 gRPC 代码就需要先安装 `protoc-gen-go-grpc` 插件。
 					- ```
 					  go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 					  ```
-				- 上述命令会默认将插件安装到`$GOPATH/bin`，为了`protoc`编译器能找到这些插件，请确保`$GOPATH/bin`在环境变量中。
+				- 上述命令会默认将插件安装到`$GOPATH/bin`，为了`protoc`编译器能找到这些插件，确保`$GOPATH/bin`在环境变量中。
 				- 假设现在要提供一个创建书籍的 RPC 方法，那么我在`book.proto`中添加如下定义。
 					- ```
 					  // demo/proto/book/book.proto
