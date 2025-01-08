@@ -1,5 +1,5 @@
 - vscode环境配置
-	- vscode go代码检测配置#vscode #go
+	- vscode go代码检测配置#vscode #Go
 		- 仅忽略未使用函数警告，保留其他警告
 			- 在vscode设置里使用go.lint,配置go.lintFlags
 			  logseq.order-list-type:: number

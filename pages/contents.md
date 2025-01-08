@@ -6,13 +6,14 @@
 		- [[logseq使用总结]]
 	-
 	- ## 后端
-		- [[go]]学习
+		- [[Go]]学习
 		- [[vscode]]使用
 		- [[dubbo]]总结
 		- [[zookeeper]]总结
 		- [[protocol buffers]]
 		- [[git]]
 		- [[终端命令]]
+		- [[Python]]
 	-
 	- ## 其他
 		- [[README]]
