@@ -8,7 +8,6 @@
 			- 标量消息字段可以具有以下类型之一，表格为`.proto`文件中指定的类型以及自动生成的类中的对应类型
 			- TODO logseq不支持表格，插入链接 [protobuf语法](https://protobuf.com.cn/programming-guides/proto3/)
 - # protobuf编译器指南
-  collapsed:: true
 	- ## 安装protobuf
 		- 从官方仓库：https://github.com/google/protobuf/releases 下载平台的预编译好的二进制文件（`protoc-<version>-<platform>.zip`）。
 			- 适用Windows 64位[protoc-3.20.1-win64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v3.20.1/protoc-3.20.1-win64.zip)
