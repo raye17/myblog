@@ -12,7 +12,7 @@
 		- [[zookeeper]]总结
 		- [[protocol buffers]]
 		- [[git]]
-		- [[终端命令]]
+		- [[Terminal]]
 		- [[Python]]
 	-
 	- ## 系统
