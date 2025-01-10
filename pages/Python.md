@@ -5,7 +5,6 @@
 	- 下载
 		- 根据系统选择对应的版本
 	- 安装
-	  collapsed:: true
 		- 选择自定义安装：
 		- ![image.png](../assets/image_1736307815084_0.png)
 		- 自定义安装位置
