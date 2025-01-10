@@ -10,10 +10,10 @@
 - # protobuf编译器指南
 	- ## 安装protobuf
 		- 从官方仓库：https://github.com/google/protobuf/releases 下载平台的预编译好的二进制文件（`protoc-<version>-<platform>.zip`）。
-			- 适用Windows 64位[protoc-3.20.1-win64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v3.20.1/protoc-3.20.1-win64.zip)
-			- 适用于Mac Intel 64位[protoc-3.20.1-osx-x86_64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v3.20.1/protoc-3.20.1-osx-x86_64.zip)
-			- 适用于Mac ARM 64位[protoc-3.20.1-osx-aarch_64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v3.20.1/protoc-3.20.1-osx-aarch_64.zip)
-			- 适用于Linux 64位[protoc-3.20.1-linux-x86_64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v3.20.1/protoc-3.20.1-linux-x86_64.zip)
+			- 适用Windows 64位[protoc-3.21.12-win64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v3.21.12/protoc-3.21.12-win64.zip)
+			- 适用于Mac Intel 64位[protoc-3.21.12-osx-x86_64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v3.21.12/protoc-3.21.12-osx-x86_64.zip)
+			- 适用于Mac ARM 64位[protoc-3.21.12-osx-aarch_64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v3.21.12/protoc-3.21.12-osx-aarch_64.zip)
+			- 适用于Linux 64位[protoc-3.21.12-linux-x86_64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v3.21.12/protoc-3.21.12-linux-x86_64.zip)
 		- 其中：
 			- bin 目录下的 protoc 是可执行文件。
 			- include 目录下的是 google 定义的`.proto`文件，`import "google/protobuf/timestamp.proto"`就是从此处导入。
