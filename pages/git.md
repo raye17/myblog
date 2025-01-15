@@ -24,6 +24,7 @@
 -
 - ## 分支
 	- ### 新建分支
+	  collapsed:: true
 		- ```
 		  #第一步，切换到指定的分支。如从dev上拉一个分支
 		  git checkout dev 
@@ -37,3 +38,12 @@
 		  git branch --set-upstream-to=origin/test test
 		  ```
 			-
+	- ### 删除分支
+		- ```
+		  删除远程分支：
+		  git push origin --delete <branch-name>
+		  删除本地分支：
+		  git branch -d <branch-name>
+		  如果该分支没有被完全合并，可以使用强制删除：
+		  git branch -D <branch-name>
+		  ```
