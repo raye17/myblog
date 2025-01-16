@@ -24,14 +24,17 @@
 -
 - ## subModule
 	- ### 为什么要subModule
+	  collapsed:: true
 		- **解决公共代码问题**。如果某些文件，在项目A和项目B中都会用到，例如组件库，那么这些文件可以作为 submodules 来管理，减少重复代码。（npm包是另一解决方案）
 		- **解决团队维护难题**。如果一个大项目是一个大 Git 仓库，需要统一编译，不同的模块由不同团队维护，放在同一个 Git 仓库有诸多难处：例如多个团队的 MR 混在一起、权限难以区分等。这种情况即使公司内网 Git 权限做的足够精细，仓库管理员的学习成本也会很高，很难深度使用这种高级功能。为了解决多团队维护的难题，Git Submodules 也能大展身手，它可以让每个团队负责的模块就是一个 Git 仓库，这些 Git 仓库都被包含在同一个主 Git 项目下。（微前端、微服务是另一种解决方案。）
 	- ### 了解SubModule
+	  collapsed:: true
 		- 一个仓库做另一个仓库的子模块，两者都是完整的git仓库
 	- ### 创建SubModule
+	  collapsed:: true
 		- ```
-		  git init ProjectA
-		  git init ProjectB
+		  ProjectA：git init 
+		  ProjectB：git init
 		  在A仓库下 
 		  git submodule add (projectB地址；即git clone 后面的地址)
 		  ```
@@ -47,6 +50,23 @@
 			- ![image.png](../assets/image_1737006103058_0.png)
 			- ![image.png](../assets/image_1737006178419_0.png)
 			- 主项目还保存了对应 submodule 的版本号（commit id），没有冗余存储 submodule 的代码。
+		-
+	- ### SubModule开发常用操作
+	  collapsed:: true
+		- 像普通项目一样更新
+		  logseq.order-list-type:: number
+			- 直接git clone 子项目，像普通仓库一样更新推送
+			  logseq.order-list-type:: number
+		- 在主项目更新
+		  logseq.order-list-type:: number
+			- 在主项目进入子模块对应的文件夹下进行git操作
+			  logseq.order-list-type:: number
+			- ![image.png](../assets/image_1737006414143_0.png)
+			  logseq.order-list-type:: number
+	- ### 拉取SubModule更新
+		- cd submodule后进行git pull
+		  logseq.order-list-type:: number
+		- logseq.order-list-type:: number
 - ## 仓库
 	-
 - ## 分支
