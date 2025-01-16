@@ -15,6 +15,9 @@
 		- [[Terminal]]
 		- [[Python]]
 	-
+	- ## 数据库
+		- [[mysql]]
+	-
 	- ## 系统
 		- [[linux]]
 		-
