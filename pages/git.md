@@ -30,8 +30,21 @@
 		- 一个仓库做另一个仓库的子模块，两者都是完整的git仓库
 	- ### 创建SubModule
 		- ```
+		  git init ProjectA
+		  git init ProjectB
+		  在A仓库下 
+		  git submodule add (projectB地址；即git clone 后面的地址)
 		  ```
-		-
+		- **注意事项**
+			- 执行操作后，会在当前父项目下新建个文件夹，名字就是 submodule 仓库的名字。文件夹里面的内容，**是 submodule 对应 Git 仓库的完整代码。**
+			- 如果希望换个名字，或者换个路径（例如放在某个更深的目录下），也是允许的，需要后面增加个路径参数，例如`git submodule add ...(仓库地址) src/B(希望 submodule 位于的文件夹路径)`
+		- **submodule 的父子关系存在哪里**
+			- 关系是保存在主项目的 Git 仓库中。
+			- 被当作 submodule 的 Git 仓库，其实不知道自己变成了 submodule，它更不知道爸爸们有谁。（意思是，当打开某个被当作 submodule 的 Git 仓库首页时，或者拉下这个仓库时，没有任何痕迹表明它是个submodule。因为父子信息不存在这里，只存在爸爸那里。）
+		- ### SubModule信息保存
+			- 存在于主项目的`.gitmodule`文件里
+			- 主项目还保存了对应 submodule 的版本号（commit id），没有冗余存储 submodule 的代码。
+-
 - ## 分支
 	- ### 新建分支
 	  collapsed:: true
