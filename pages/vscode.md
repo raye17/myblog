@@ -40,3 +40,37 @@
 				  }
 				  ```
 	-
+- 在vscode中使用gopls
+	- Go 扩展默认是使用大量的 Go 工具来提供各种功能的, 每个工具提供某个方面的能力, 比如代码提示是依靠 gocode 的.
+	- 微软在开发 VS Code 过程中, 定义一种协议, 语言服务器协议：[Language Server Protocol](https://link.zhihu.com/?target=https%3A//microsoft.github.io/language-server-protocol/)
+	- gopls 就是官方的语言服务器.
+	- 安装并设置 gopls
+		- 安装方式一
+		  打开 VS Code 的设置, 搜索 go.useLanguageServe, 并勾选上. 默认情况下, Go 扩展会提示你安装 gopls.
+		- 如果长时间安装不上, 可以尝试手动安装, 官方安装指南.
+		- 安装方式二
+			- 另外也有可能是网络的问题, 直接去 https://github.com/golang/tools/tree/master/gopls 下载, 然后使用 go install github.com/golang/tools/cmd/gopls 安装.
+		- 安装方式三
+			- 网络好, 或者设置 goproxy 代理后, 可以直接手动安装 gopls, 官方提示不要使用 -u.
+			- go get golang.org/x/tools/gopls@latest
+			- 配置
+				- 装完之后, 添加如下的配置, 如果使用第一种安装方式, 那么第一行已经存在了:
+	- "go.useLanguageServer": true,
+	  "[go]": {
+	    "editor.snippetSuggestions": "none",
+	    "editor.formatOnSave": true,
+	    "editor.codeActionsOnSave": {
+	        "source.organizeImports": true
+	    }
+	  },
+	  "gopls": {
+	    "usePlaceholders": true, // add parameter placeholders when completing a function
+	    "wantCompletionDocumentation": true // for documentation in completion items
+	  },
+	  "files.eol": "\n", // formatting only supports LF line endings
+	  如果你需要在不同的编辑器中使用 gopls, 请参考官方安装文档中的设置.
+	- ​
+	-
+	-
+	-
+	-
