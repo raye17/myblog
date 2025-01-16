@@ -81,7 +81,26 @@
 			  logseq.order-list-type:: number
 			- 所以，这种方法仅适用于，当主仓库里记录的 submodule 的 commit id 已经是最新的（可能被其他同事提交过）。或者期望 submodule 跟主仓库记录的保持一致时，也可以使用该方法。
 			  logseq.order-list-type:: number
-	- ### kel
+	- ### 克隆包含SubModule的仓库
+		- **方法一**，按需clone submodule
+			- 先`git clone `主项目仓库并进入主项目文件夹，这时候submodule的文件夹都是空的。
+			  logseq.order-list-type:: number
+			- 执行`git submodule init [submodule的文件夹的相对路径]`。
+			  logseq.order-list-type:: number
+			- 执行`git submodule update [submodule的文件夹的相对路径]`。
+			  logseq.order-list-type:: number
+			- 这就按需clone了submodule。跨团队协作某个主项目时，一些其它团队的submodule没必要安装，就不必执行init和update了。
+			- 合并第2、3步骤: 第2、3步可以合并。使用命令：`git submodule update --init [submodule的文件夹的相对路径]`
+			- 注意顺序，--init跟[submodule的文件夹的相对路径]的位置不可以调换。
+		- **方法二**，一次性clone所有 submodule
+			- 先git clone 主项目仓库，这时候submodule的文件夹都是空的。
+		- 执行git submodule init。
+		- 执行git submodule update。
+		- 只要不写submodule，那么就一次性检查该主项目的所有submodule，都拉下来。
+		- 合并第2、3步骤
+		  git submodule update --init
+		  合并第1、2、3步骤
+		- git clone --recurse-submodules [主项目Git仓库地址]
 - ## 仓库
 	-
 - ## 分支
