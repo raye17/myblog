@@ -24,11 +24,9 @@
 -
 - ## subModule
 	- ### 为什么要subModule
-	  collapsed:: true
 		- **解决公共代码问题**。如果某些文件，在项目A和项目B中都会用到，例如组件库，那么这些文件可以作为 submodules 来管理，减少重复代码。（npm包是另一解决方案）
 		- **解决团队维护难题**。如果一个大项目是一个大 Git 仓库，需要统一编译，不同的模块由不同团队维护，放在同一个 Git 仓库有诸多难处：例如多个团队的 MR 混在一起、权限难以区分等。这种情况即使公司内网 Git 权限做的足够精细，仓库管理员的学习成本也会很高，很难深度使用这种高级功能。为了解决多团队维护的难题，Git Submodules 也能大展身手，它可以让每个团队负责的模块就是一个 Git 仓库，这些 Git 仓库都被包含在同一个主 Git 项目下。（微前端、微服务是另一种解决方案。）
 	- ### 了解SubModule
-	  collapsed:: true
 		- 一个仓库做另一个仓库的子模块，两者都是完整的git仓库
 	- ### 创建SubModule
 	  collapsed:: true
@@ -42,15 +40,15 @@
 			- 执行操作后，会在当前父项目下新建个文件夹，名字就是 submodule 仓库的名字。文件夹里面的内容，**是 submodule 对应 Git 仓库的完整代码。**
 			- 如果希望换个名字，或者换个路径（例如放在某个更深的目录下），也是允许的，需要后面增加个路径参数，例如`git submodule add ...(仓库地址) src/B(希望 submodule 位于的文件夹路径)`
 		- ![image.png](../assets/image_1737006079216_0.png){:height 176, :width 1161}
-		- **submodule 的父子关系存在哪里**
+	- ### SubModule信息保存
+	  collapsed:: true
+		- 存在于主项目的`.gitmodule`文件里
+		- ![image.png](../assets/image_1737006103058_0.png)
+		- ![image.png](../assets/image_1737006178419_0.png)
+		- 主项目还保存了对应 submodule 的版本号（commit id），没有冗余存储 submodule 的代码。
+		- ### submodule 的父子关系存在哪里
 			- 关系是保存在主项目的 Git 仓库中。
 			- 被当作 submodule 的 Git 仓库，其实不知道自己变成了 submodule，它更不知道爸爸们有谁。（意思是，当打开某个被当作 submodule 的 Git 仓库首页时，或者拉下这个仓库时，没有任何痕迹表明它是个submodule。因为父子信息不存在这里，只存在爸爸那里。）
-		- ### SubModule信息保存
-			- 存在于主项目的`.gitmodule`文件里
-			- ![image.png](../assets/image_1737006103058_0.png)
-			- ![image.png](../assets/image_1737006178419_0.png)
-			- 主项目还保存了对应 submodule 的版本号（commit id），没有冗余存储 submodule 的代码。
-		-
 	- ### SubModule开发常用操作
 	  collapsed:: true
 		- 像普通项目一样更新
@@ -82,6 +80,7 @@
 			- 所以，这种方法仅适用于，当主仓库里记录的 submodule 的 commit id 已经是最新的（可能被其他同事提交过）。或者期望 submodule 跟主仓库记录的保持一致时，也可以使用该方法。
 			  logseq.order-list-type:: number
 	- ### 克隆包含SubModule的仓库
+	  collapsed:: true
 		- **方法一**，按需clone submodule
 			- 先`git clone `主项目仓库并进入主项目文件夹，这时候submodule的文件夹都是空的。
 			  logseq.order-list-type:: number
@@ -93,14 +92,30 @@
 			- 合并第2、3步骤: 第2、3步可以合并。使用命令：`git submodule update --init [submodule的文件夹的相对路径]`
 			- 注意顺序，--init跟[submodule的文件夹的相对路径]的位置不可以调换。
 		- **方法二**，一次性clone所有 submodule
-			- 先git clone 主项目仓库，这时候submodule的文件夹都是空的。
-		- 执行git submodule init。
-		- 执行git submodule update。
-		- 只要不写submodule，那么就一次性检查该主项目的所有submodule，都拉下来。
-		- 合并第2、3步骤
-		  git submodule update --init
-		  合并第1、2、3步骤
-		- git clone --recurse-submodules [主项目Git仓库地址]
+			- 先`git clone `主项目仓库，这时候submodule的文件夹都是空的。
+			  logseq.order-list-type:: number
+			- 执行`git submodule init`。
+			  logseq.order-list-type:: number
+			- 执行`git submodule update`。
+			  logseq.order-list-type:: number
+			- 只要不写submodule，那么就一次性检查该主项目的所有submodule，都拉下来。
+			- 合并第2、3步骤:`git submodule update --init`
+			- 合并第1、2、3步骤:`git clone --recurse-submodules [主项目Git仓库地址]`
+	- ### 常用命令参考
+		- ```
+		  ```
+	- ### 官方Api
+		- ```git submodule [--quiet] add [] [--]  []
+		  git submodule [--quiet] status [--cached] [--recursive] [--] […​]
+		  git submodule [--quiet] init [--] […​]
+		  git submodule [--quiet] deinit [-f|--force] (--all|[--] …​)
+		  git submodule [--quiet] update [] [--] […​]
+		  git submodule [--quiet] summary [] [--] […​]
+		  git submodule [--quiet] foreach [--recursive] 
+		  git submodule [--quiet] sync [--recursive] [--] […​]
+		  git submodule [--quiet] absorbgitdirs [--] […​]
+		  ```
+	-
 - ## 仓库
 	-
 - ## 分支
