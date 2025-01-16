@@ -44,7 +44,8 @@
 		- ### SubModule信息保存
 			- 存在于主项目的`.gitmodule`文件里
 			- 主项目还保存了对应 submodule 的版本号（commit id），没有冗余存储 submodule 的代码。
--
+- ## 仓库
+	-
 - ## 分支
 	- ### 新建分支
 	  collapsed:: true
