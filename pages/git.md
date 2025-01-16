@@ -49,7 +49,6 @@
 			- 关系是保存在主项目的 Git 仓库中。
 			- 被当作 submodule 的 Git 仓库，其实不知道自己变成了 submodule，它更不知道爸爸们有谁。（意思是，当打开某个被当作 submodule 的 Git 仓库首页时，或者拉下这个仓库时，没有任何痕迹表明它是个submodule。因为父子信息不存在这里，只存在爸爸那里。）
 	- ### SubModule开发常用操作
-	  collapsed:: true
 		- 像普通项目一样更新
 		  logseq.order-list-type:: number
 		  collapsed:: true
@@ -132,7 +131,7 @@
 		  git submodule [--quiet] absorbgitdirs [--] […​]
 		  ```
 	- ### 参考链接
-		- 菜鸟
+		- [菜鸟教程](https://www.runoob.com/git/git-submodule.html)
 	-
 - ## 仓库
 	-
