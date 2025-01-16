@@ -50,7 +50,24 @@
 			- 关系是保存在主项目的 Git 仓库中。
 			- 被当作 submodule 的 Git 仓库，其实不知道自己变成了 submodule，它更不知道爸爸们有谁。（意思是，当打开某个被当作 submodule 的 Git 仓库首页时，或者拉下这个仓库时，没有任何痕迹表明它是个submodule。因为父子信息不存在这里，只存在爸爸那里。）
 	- ### SubModule开发常用操作
-	  collapsed:: true
+		- ### SubModule更新
+		  logseq.order-list-type:: number
+			- 方法一，主项目执行`git submodule update --remote [submodule文件夹相对路径]`
+			  logseq.order-list-type:: number
+				- 如果不带参数`[submodule文件夹相对路径]`，就会更新所有 submodules
+				  logseq.order-list-type:: number
+				- **注意事项**，更新后需提交主项目变更。
+				  logseq.order-list-type:: number
+				- 当更新子项目后，相当于是把主项目记录的 submodule 的 commit id 给更新了，需要提交下主项目的变更。
+				  logseq.order-list-type:: number
+			- 方法二，cd submodule后进行git pull
+			  logseq.order-list-type:: number
+			- 方法三，主项目执行  `git submodule update [submodule文件夹相对路径]`
+			  logseq.order-list-type:: number
+				- **注意**，该方法会使 submodule 的分支处于主项目里指定的 commit id。可能并不是拉 submodule 的 master 最新代码。
+				  logseq.order-list-type:: number
+				- 所以，这种方法仅适用于，当主仓库里记录的 submodule 的 commit id 已经是最新的（可能被其他同事提交过）。或者期望 submodule 跟主仓库记录的保持一致时，也可以使用该方法。
+				  logseq.order-list-type:: number
 		- 像普通项目一样更新
 		  logseq.order-list-type:: number
 			- 直接git clone 子项目，像普通仓库一样更新推送
@@ -60,24 +77,6 @@
 			- 在主项目进入子模块对应的文件夹下进行git操作
 			  logseq.order-list-type:: number
 			- ![image.png](../assets/image_1737006414143_0.png)
-			  logseq.order-list-type:: number
-	- ### 拉取SubModule更新
-	  collapsed:: true
-		- 方法一，cd submodule后进行git pull
-		  logseq.order-list-type:: number
-		- 方法二，主项目执行`git submodule update --remote [submodule文件夹相对路径]`
-		  logseq.order-list-type:: number
-			- 如果不带参数`[submodule文件夹相对路径]`，就会更新所有 submodules
-			  logseq.order-list-type:: number
-			- **注意事项**，更新后需提交主项目变更。
-			  logseq.order-list-type:: number
-			- 当更新子项目后，相当于是把主项目记录的 submodule 的 commit id 给更新了，需要提交下主项目的变更。
-			  logseq.order-list-type:: number
-		- 方法三，主项目执行  `git submodule update [submodule文件夹相对路径]`
-		  logseq.order-list-type:: number
-			- **注意**，该方法会使 submodule 的分支处于主项目里指定的 commit id。可能并不是拉 submodule 的 master 最新代码。
-			  logseq.order-list-type:: number
-			- 所以，这种方法仅适用于，当主仓库里记录的 submodule 的 commit id 已经是最新的（可能被其他同事提交过）。或者期望 submodule 跟主仓库记录的保持一致时，也可以使用该方法。
 			  logseq.order-list-type:: number
 	- ### 克隆包含SubModule的仓库
 	  collapsed:: true
@@ -103,6 +102,11 @@
 			- 合并第1、2、3步骤:`git clone --recurse-submodules [主项目Git仓库地址]`
 	- ### 常用命令参考
 		- ```
+		  git clone  --recursive //递归的方式克隆整个项目, 包含子项目
+		  git submodule add   //添加子模块
+		  git submodule init //初始化子模块
+		  git submodule update //更新子模块
+		  git submodule foreach git pull //拉取所有子模块
 		  ```
 	- ### 官方Api
 		- ```git submodule [--quiet] add [] [--]  []
