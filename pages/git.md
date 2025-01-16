@@ -64,9 +64,24 @@
 			- ![image.png](../assets/image_1737006414143_0.png)
 			  logseq.order-list-type:: number
 	- ### 拉取SubModule更新
-		- cd submodule后进行git pull
+	  collapsed:: true
+		- 方法一，cd submodule后进行git pull
 		  logseq.order-list-type:: number
-		- logseq.order-list-type:: number
+		- 方法二，主项目执行`git submodule update --remote [submodule文件夹相对路径]`
+		  logseq.order-list-type:: number
+			- 如果不带参数`[submodule文件夹相对路径]`，就会更新所有 submodules
+			  logseq.order-list-type:: number
+			- **注意事项**，更新后需提交主项目变更。
+			  logseq.order-list-type:: number
+			- 当更新子项目后，相当于是把主项目记录的 submodule 的 commit id 给更新了，需要提交下主项目的变更。
+			  logseq.order-list-type:: number
+		- 方法三，主项目执行  `git submodule update [submodule文件夹相对路径]`
+		  logseq.order-list-type:: number
+			- **注意**，该方法会使 submodule 的分支处于主项目里指定的 commit id。可能并不是拉 submodule 的 master 最新代码。
+			  logseq.order-list-type:: number
+			- 所以，这种方法仅适用于，当主仓库里记录的 submodule 的 commit id 已经是最新的（可能被其他同事提交过）。或者期望 submodule 跟主仓库记录的保持一致时，也可以使用该方法。
+			  logseq.order-list-type:: number
+	- ### kel
 - ## 仓库
 	-
 - ## 分支
