@@ -25,6 +25,9 @@
 		  ```
 	- ### 查看建表信息
 		- ```
+		  查看所有表：
+		  show tables
+		  查看某个表：
 		  describe table_name(describe 可省略成desc)
 		  show create table table_name
 		  ```
@@ -32,6 +35,20 @@
 		- #### 新增列
 			- ```
 			  alter table table_name add column email varchar(255);
+			  ```
+		- #### 删除列
+		  collapsed:: true
+			- ```
+			  ALTER TABLE table_name DROP COLUMN columnName;
+			  ```
+		- #### 重命名
+			- ```
+			  -- 使用 CHANGE 关键字
+			  ALTER TABLE table_name CHANGE oldColumnName newColumnName columnType;
+			  
+			  -- 使用 RENAME 关键字
+			  ALTER TABLE table_name RENAME COLUMN oldColumnName TO newColumnName;
+			  
 			  ```
 - ## 数据操作
 	- ### 插入数据
