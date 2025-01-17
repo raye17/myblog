@@ -1,6 +1,20 @@
--
+## 库操作
+	- ```
+	  基本操作：
+	  # 创建数据库
+	  CREATE DATABASE myDatabase;
+	  # 查看数据库
+	  	查看所有数据库：
+	  		SHOW DATABASES;
+	  	查看某个数据库的详细信息：
+	  		SHOW CREATE DATABASE myDatabase;
+	  # 删除数据库
+	  DROP DATABASE myDatabase;
+	  # 切换数据库
+	  USE myDatabase;
+	  在执行这些操作之前，确保有足够的权限，并且在进行删除操作之前，确保已经备份重要数据，以防不慎删除。
+	  ```
 - ## 表操作
-  collapsed:: true
 	- ### 创建
 		- ```
 		  create table table_name(
@@ -10,7 +24,6 @@
 		  )
 		  ```
 	- ### 查看建表信息
-	  collapsed:: true
 		- ```
 		  describe table_name(describe 可省略成desc)
 		  show create table table_name
