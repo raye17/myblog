@@ -15,28 +15,30 @@
 	  在执行这些操作之前，确保有足够的权限，并且在进行删除操作之前，确保已经备份重要数据，以防不慎删除。
 	  ```
 - ## 表操作
-	- ### 创建
-		- ```
-		  create table table_name(
-		  id int primary key,
-		  name var，
-		  age int
-		  )
-		  ```
-	- ### 查看建表信息
-		- ```
-		  查看所有表：
-		  show tables
-		  查看某个表：
-		  describe table_name(describe 可省略成desc)
-		  show create table table_name
-		  ```
-	- ### 修改
-		- #### 新增列
+	- ###  表级
+	  collapsed:: true
+		- ### 创建
+			- ```
+			  create table table_name(
+			  id int primary key,
+			  name var，
+			  age int
+			  )
+			  ```
+		- ### 查看建表信息
+			- ```
+			  查看所有表：
+			  show tables
+			  查看某个表：
+			  describe table_name(describe 可省略成desc)
+			  show create table table_name
+			  ```
+	- ### 列级
+		- #### 新增
 			- ```
 			  alter table table_name add column email varchar(255);
 			  ```
-		- #### 删除列
+		- #### 删除
 		  collapsed:: true
 			- ```
 			  ALTER TABLE table_name DROP COLUMN columnName;
@@ -50,8 +52,20 @@
 			  ALTER TABLE table_name RENAME COLUMN oldColumnName TO newColumnName;
 			  
 			  ```
+		- #### 修改数据类型
+			- ```
+			  ALTER TABLE table_name MODIFY COLUMN columnName newColumnType;
+			  ```
 - ## 数据操作
-	- ### 插入数据
+	- ### 查询
+		- **多表查询**
+			- 内连接
+			  logseq.order-list-type:: number
+			- 外连接
+			  logseq.order-list-type:: number
+		- ```
+		  ```
+	- ### 插入
 		- ```
 		   # 单行插入
 		   	## 插入全列数据
@@ -65,7 +79,7 @@
 		          (2,'Bob'),
 		          (3,'raye');
 		  ```
-	- ### 更新数据
+	- ### 更新
 		- ```
 		  单行更新
 		  -- 更新 id 为 1 的行的 email 列
