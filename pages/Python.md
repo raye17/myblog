@@ -1,4 +1,5 @@
 # 安装
+collapsed:: true
 	- 安装包地址
 		- 官网[Welcome to Python.org](https://www.python.org/)
 		- [国内地址](https://repo.huaweicloud.com/artifactory/python-local/3.13.1/)
