@@ -299,7 +299,7 @@
  ;;  :charge-range    600}   ; Default value: 600
 
  ;; Favorites to list on the left sidebar
- :favorites ["contents" "favorites" "readme"]
+ :favorites ["工作" "contents" "favorites" "readme"]
 
  ;; Set flashcards interval.
  ;; Expected value:
