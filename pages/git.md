@@ -137,6 +137,7 @@
 - ## 仓库
 	-
 - ## 分支
+  collapsed:: true
 	- ### 新建分支
 	  collapsed:: true
 		- ```
@@ -161,3 +162,43 @@
 		  如果该分支没有被完全合并，可以使用强制删除：
 		  git branch -D <branch-name>
 		  ```
+-
+- ## merge
+	- ### 冲突
+		- 在Git中，如果在执行`git merge`时遇到了冲突，并且希望取消这次合并操作，有以下几种方法：
+		- #### 方法一：使用 `git merge --abort`
+		  collapsed:: true
+			- ```bash
+			  git merge --abort
+			  这是最直接的方法，它会尝试撤销合并操作并恢复到合并前的状态。
+			  ```
+		- #### 方法二：使用 `git reset`
+		  collapsed:: true
+			- ```bash
+			  git reset --merge
+			  如果已经解决了部分冲突并提交了这些更改，或者`git merge --abort`无法正常工作，可以使用`git reset`来撤销合并。
+			  ```
+		- #### 方法三：使用 `git reset --hard`
+		  collapsed:: true
+			- ```bash
+			  git reset --hard
+			  如果希望完全撤销合并并恢复到合并前的状态，可以使用`git reset --hard`。请注意，这种方法会丢失所有未提交的更改，因此请谨慎使用。
+			  ```
+		- #### 方法四：使用 `git reflog`
+			- ```bash
+			  git reflog
+			  如果已经解决了部分冲突并希望保留这些更改，但仍然希望取消合并，可以使用`git reflog`找到合并前的提交哈希值，然后使用`git reset`或`git checkout`回到那个状态。
+			  找到合并前的提交哈希值，然后使用：
+			  git reset --hard <commit-hash>
+			  或者
+			  git checkout <commit-hash>
+			  ```
+			-
+			-
+			- ```bash
+			  ```
+		- #### 总结
+		- `git merge --abort`：尝试自动撤销合并。
+		- `git reset --merge`：撤销合并但保留未解决的冲突。
+		- `git reset --hard`：完全撤销合并并丢弃所有未提交的更改。
+		- `git reflog`：手动找到合并前的状态并恢复。
