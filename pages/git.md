@@ -176,7 +176,7 @@
 		  collapsed:: true
 			- ```bash
 			  git reset --merge
-			  如果已经解决了部分冲突并提交了这些更改，或者`git merge --abort`无法正常工作，可以使用`git reset`来撤销合并。
+			  如果已经解决了部分冲突并提交了这些更改，或者`git merge --abort`无法正常运行，可以使用`git reset`来撤销合并。
 			  ```
 		- #### 方法三：使用 `git reset --hard`
 		  collapsed:: true
