@@ -194,9 +194,6 @@
 			  git checkout <commit-hash>
 			  ```
 			-
-			-
-			- ```bash
-			  ```
 		- #### 总结
 		- `git merge --abort`：尝试自动撤销合并。
 		- `git reset --merge`：撤销合并但保留未解决的冲突。
