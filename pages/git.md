@@ -23,7 +23,6 @@
 	  logseq.order-list-type:: number
 -
 - ## subModule
-  collapsed:: true
 	- ### 为什么要subModule
 		- **解决公共代码问题**。如果某些文件，在项目A和项目B中都会用到，例如组件库，那么这些文件可以作为 submodules 来管理，减少重复代码。（npm包是另一解决方案）
 		- **解决团队维护难题**。如果一个大项目是一个大 Git 仓库，需要统一编译，不同的模块由不同团队维护，放在同一个 Git 仓库有诸多难处：例如多个团队的 MR 混在一起、权限难以区分等。这种情况即使公司内网 Git 权限做的足够精细，仓库管理员的学习成本也会很高，很难深度使用这种高级功能。为了解决多团队维护的难题，Git Submodules 也能大展身手，它可以让每个团队负责的模块就是一个 Git 仓库，这些 Git 仓库都被包含在同一个主 Git 项目下。（微前端、微服务是另一种解决方案。）
@@ -41,7 +40,6 @@
 			- 如果希望换个名字，或者换个路径（例如放在某个更深的目录下），也是允许的，需要后面增加个路径参数，例如`git submodule add ...(仓库地址) src/B(希望 submodule 位于的文件夹路径)`
 		- ![image.png](../assets/image_1737006079216_0.png){:height 176, :width 1161}
 	- ### SubModule信息保存
-	  collapsed:: true
 		- 存在于主项目的`.gitmodule`文件里
 		- ![image.png](../assets/image_1737006103058_0.png)
 		- ![image.png](../assets/image_1737006178419_0.png)
@@ -52,21 +50,17 @@
 	- ### SubModule开发常用操作
 		- 像普通项目一样更新
 		  logseq.order-list-type:: number
-		  collapsed:: true
 			- 直接git clone 子项目，像普通仓库一样更新推送
 			  logseq.order-list-type:: number
 		- 在主项目更新
 		  logseq.order-list-type:: number
-		  collapsed:: true
 			- 在主项目进入子模块对应的文件夹下进行git操作
 			  logseq.order-list-type:: number
-			- ![image.png](../assets/image_1737006414143_0.png)
+			- ![image.png](../assets/image_1737006414143_0.png){:height 132, :width 409}
 			  logseq.order-list-type:: number
 		- ### SubModule更新
-		  collapsed:: true
 			- 方法一，主项目执行`git submodule update --remote [submodule文件夹相对路径]`
 			  logseq.order-list-type:: number
-			  collapsed:: true
 				- 如果不带参数`[submodule文件夹相对路径]`，就会更新所有 submodules
 				  logseq.order-list-type:: number
 				- **注意事项**，更新后需提交主项目变更。
@@ -89,7 +83,6 @@
 			  vim .git/config
 			  ```
 	- ### 克隆包含SubModule的仓库
-	  collapsed:: true
 		- **方法一**，按需clone submodule
 			- 先`git clone `主项目仓库并进入主项目文件夹，这时候submodule的文件夹都是空的。
 			  logseq.order-list-type:: number
@@ -111,7 +104,6 @@
 			- 合并第2、3步骤:`git submodule update --init`
 			- 合并第1、2、3步骤:`git clone --recurse-submodules [主项目Git仓库地址]`
 	- ### 常用命令参考
-	  collapsed:: true
 		- ```
 		  git clone  --recursive //递归的方式克隆整个项目, 包含子项目
 		  git submodule add   //添加子模块
@@ -120,7 +112,6 @@
 		  git submodule foreach git pull //拉取所有子模块
 		  ```
 	- ### 官方Api
-	  collapsed:: true
 		- ```git submodule [--quiet] add [] [--]  []
 		  git submodule [--quiet] status [--cached] [--recursive] [--] […​]
 		  git submodule [--quiet] init [--] […​]
@@ -135,10 +126,10 @@
 		- [菜鸟教程](https://www.runoob.com/git/git-submodule.html)
 	-
 - ## 仓库
+  collapsed:: true
 	-
 - ## 分支
 	- ### 新建分支
-	  collapsed:: true
 		- ```
 		  #第一步，切换到指定的分支。如从dev上拉一个分支
 		  git checkout dev 
