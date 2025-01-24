@@ -137,7 +137,6 @@
 - ## 仓库
 	-
 - ## 分支
-  collapsed:: true
 	- ### 新建分支
 	  collapsed:: true
 		- ```
