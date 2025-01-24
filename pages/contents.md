@@ -10,9 +10,7 @@
 		- [[dubbo]]总结
 		- [[zookeeper]]总结
 		- [[protocol buffers]]
-		- [[git]]
 		- [[Terminal]]
-		- [[Python]]
 	-
 	- ## 数据库
 		- [[mysql]]
