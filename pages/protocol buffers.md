@@ -458,7 +458,7 @@
 - # 管理 protobuf
   
   在企业的项目开发中，通常会把 protobuf 文件存储到一个单独的代码库中，并在具体项目中通过`git submodule`引入。这样做的好处是能够将 protobuf 文件统一管理和维护，避免因 protobuf 文件改动导致的问题。
-- ## 更新protobuf包 #Go
+- ## 更新protobuf包 #[[Go ok]]
   collapsed:: true
 	- 更新protobuf包涉及以下几个步骤：
 		- **更新protobuf编译器**：确保使用的是最新版本的protobuf编译器。

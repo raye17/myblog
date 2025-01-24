@@ -1,5 +1,5 @@
 ## [[go安装]]部署
-title:: Go
+title:: Go ok
 -
 - ## [[gorm]]
 - ## [[gin]]

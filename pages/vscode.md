@@ -1,5 +1,5 @@
 - vscode环境配置
-	- vscode go 配置  #Go
+	- vscode go 配置  #[[Go ok]]
 		- 代码检测配置
 			- 仅忽略未使用函数警告，保留其他警告
 				- 在vscode设置里使用go.lint,配置go.lintFlags
