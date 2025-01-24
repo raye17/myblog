@@ -199,6 +199,22 @@
 		- `git reset --hard`：完全撤销合并并丢弃所有未提交的更改。
 		- `git reflog`：手动找到合并前的状态并恢复。
 - ### 撤销push的merge
-	- ```
-	  ```
+	- #### git revert
+		- ```
+		  git log 
+		  git revert commit_id
+		  git add .
+		  git commit -m ""
+		  git push
+		  ```
+	- #### git reset
+		- ```
+		  git log 
+		  
+		  # 回退到正常的提交
+		  git reset --hard commit_id
+		  # 强制推送到远程仓库
+		  git push --force
+		  ```
+	- ==注意事项== 在使用这些命令时，一定要非常小心。尤其是 `git reset --hard` 和 `git push --force` 这样的强制操作，它们会改变历史记录。在团队合作的项目中，可能会对其他开发者产生影响。所以，在执行这些操作之前，最好是和团队沟通一下，确保不会影响到别人。
 	- [参考](https://blog.csdn.net/z275598733/article/details/143106356)
