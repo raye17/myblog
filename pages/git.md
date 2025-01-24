@@ -1,5 +1,5 @@
 ### git add
-title:: git ok
+title:: git
 	- git add 添加多个文件，文件中间用空格隔开
 	  logseq.order-list-type:: number
 		- `git add file1 file2`

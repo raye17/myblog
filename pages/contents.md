@@ -6,12 +6,11 @@
 		- [[logseq使用总结]]
 	-
 	- ## 后端
-		- [[Go ok]]学习
 		- [[vscode]]使用
 		- [[dubbo]]总结
 		- [[zookeeper]]总结
 		- [[protocol buffers]]
-		- [[git ok]]
+		- [[git]]
 		- [[Terminal]]
 		- [[Python]]
 	-
