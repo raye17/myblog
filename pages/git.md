@@ -165,6 +165,7 @@
 -
 - ## merge
 	- ### 冲突
+	  collapsed:: true
 		- 在Git中，如果在执行`git merge`时遇到了冲突，并且希望取消这次合并操作，有以下几种方法：
 		- #### 方法一：使用 `git merge --abort`
 		  collapsed:: true
@@ -199,3 +200,5 @@
 		- `git reset --merge`：撤销合并但保留未解决的冲突。
 		- `git reset --hard`：完全撤销合并并丢弃所有未提交的更改。
 		- `git reflog`：手动找到合并前的状态并恢复。
+- ### 撤销push的merge
+	- [参考](https://blog.csdn.net/z275598733/article/details/143106356)
