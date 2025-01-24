@@ -1,4 +1,5 @@
 ### git add
+title:: git ok
 	- git add 添加多个文件，文件中间用空格隔开
 	  logseq.order-list-type:: number
 		- `git add file1 file2`
@@ -157,7 +158,6 @@
 	- ### 冲突
 		- 在Git中，如果在执行`git merge`时遇到了冲突，并且希望取消这次合并操作，有以下几种方法：
 		- #### 方法一：使用 `git merge --abort`
-		  collapsed:: true
 			- ```bash
 			  git merge --abort
 			  这是最直接的方法，它会尝试撤销合并操作并恢复到合并前的状态。
