@@ -1,10 +1,9 @@
 - vscode环境配置
-	- vscode go 配置  #[[Go]]
+	- vscode go 配置
 		- 代码检测配置
 			- 仅忽略未使用函数警告，保留其他警告
 				- 在vscode设置里使用go.lint,配置go.lintFlags
 				  logseq.order-list-type:: number
-				  collapsed:: true
 					- ```{
 					      "go.lintTool": "golangci-lint",
 					      "go.lintFlags": [
@@ -19,7 +18,6 @@
 					  ```
 				- 创建.golang.cli.yml文件
 				  logseq.order-list-type:: number
-				  collapsed:: true
 					- ```
 					  linters-settings:
 					    unused:
@@ -29,7 +27,6 @@
 					  ```
 				- 在setting.json文件里更新
 				  logseq.order-list-type:: number
-				  collapsed:: true
 					- ```
 					  {
 					      "go.lintTool": "golangci-lint",
