@@ -235,7 +235,6 @@ collapsed:: true
 				      └── price.proto
 				  ```
 	- ## import google proto文件
-	  collapsed:: true
 		- 有时候也需要在定义的 protobuf 文件中使用 Google 定义的类型，例如`Timestamp`、`Any`等。
 		- 例如我们要为book 添加出版日期——`date`字段，就可以通过 `import "google/protobuf/timestamp.proto";`导入并使用`Timestamp`类型了。
 		- 修改后的`book.proto`文件内容如下：
