@@ -1,9 +1,0 @@
-- dubbo学习总结
-	- 服务端和客户端，dubbogo.yaml文件保持一致，interface接口要和代码中一致，不然找不到
-	- [[dubbogo 源码分析]]
-	- DONE 为什么公司的dubbogo.yaml interface怎么实现的
-		- ^^写interface字段的时候，后面的不用加引号，一定要注意。^^
-- dubbo支持的网络协议
-	- [[triple]]
-- 文件配置
-	- [[文件配置]]

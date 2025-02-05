@@ -6,8 +6,6 @@
 		- [[logseq使用总结]]
 	-
 	- ## 后端
-		- [[vscode]]使用
-		- [[dubbo]]总结
 		- [[zookeeper]]总结
 		- [[protocol buffers]]
 		- [[Terminal]]

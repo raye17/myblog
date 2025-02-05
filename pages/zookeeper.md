@@ -1,4 +1,4 @@
-# zookeeper启动命令 #win
+# zookeeper启动命令 n
 card-last-score:: 5
 card-repeats:: 2
 card-next-schedule:: 2025-01-04T02:28:12.879Z
