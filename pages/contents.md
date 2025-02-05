@@ -6,7 +6,6 @@
 		- [[logseq使用总结]]
 	-
 	- ## 后端
-		- [[zookeeper]]总结
 		- [[protocol buffers]]
 		- [[Terminal]]
 	-

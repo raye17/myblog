@@ -1,13 +1,5 @@
-# protocol buffers
-	- ## protobuf介绍
-		- [Protobuf](https://developers.google.com/protocol-buffers)全称`Protocol Buffer`，是 Google 公司于2008年开源的一种语言无关、平台无关、可扩展的用于序列化结构化数据——类似于XML，但比XML更小、更快、更简单，它可用于（数据）通信协议、数据存储等。你只需要定义一次你想要的数据结构，然后你就可以使用特殊生成的源代码来轻松地从各种数据流和各种语言中写入和读取你的结构化数据。目前 Protobuf 被广泛用作微服务中的通信协议。
-	- ## protobuf语法
-		- [protobuf v3语法官方文档](https://developers.google.com/protocol-buffers/docs/proto3) [protobuf v3中文语法指南](https://www.liwenzhou.com/posts/Go/protobuf3-language-guide-zh)
-		- ## 标量值类型
-		  collapsed:: true
-			- 标量消息字段可以具有以下类型之一，表格为`.proto`文件中指定的类型以及自动生成的类中的对应类型
-			- TODO logseq不支持表格，插入链接 [protobuf语法](https://protobuf.com.cn/programming-guides/proto3/)
-- # protobuf编译器指南
+# protobuf编译器指南
+collapsed:: true
 	- ## 安装protobuf
 		- 从官方仓库：https://github.com/google/protobuf/releases 下载平台的预编译好的二进制文件（`protoc-<version>-<platform>.zip`）。
 			- 适用Windows 64位[protoc-3.21.12-win64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v3.21.12/protoc-3.21.12-win64.zip)
@@ -305,6 +297,7 @@
 			  protoc --proto_path=proto --go_out=proto --go_opt=paths=source_relative book/book.proto book/price.proto author/author.proto
 			  ```
 - # 生成gRPC代码
+  collapsed:: true
 	- ## gRPC-Gateway
 		- [gRPC-Gateway](https://github.com/grpc-ecosystem/grpc-gateway) 也是日常开发中比较常用的一个工具，它同样也是根据 protobuf 生成相应的代码。
 		- ### 安装工具
@@ -506,4 +499,5 @@
 		  logseq.order-list-type:: number
 		- **注意**，更新protobuf包可能会引入不兼容的更改，因此在进行更新之前，请确保了解这些更改，并在更新后彻底测试项目。
 		  logseq.order-list-type:: number
+-
 -
