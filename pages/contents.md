@@ -6,7 +6,6 @@
 		- [[logseq使用总结]]
 	-
 	- ## 后端
-		- [[protocol buffers]]
 		- [[Terminal]]
 	-
 	- ## 数据库
