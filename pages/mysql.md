@@ -16,7 +16,6 @@
 	  ```
 - ## 表操作
 	- ###  表级
-	  collapsed:: true
 		- ### 创建
 			- ```
 			  create table table_name(
@@ -39,7 +38,6 @@
 			  alter table table_name add column email varchar(255);
 			  ```
 		- #### 删除
-		  collapsed:: true
 			- ```
 			  ALTER TABLE table_name DROP COLUMN columnName;
 			  ```
